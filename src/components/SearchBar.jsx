@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
+import { MyContext } from '../context/Provider';
 import getDrinkByFirstLetter from '../services/getDrinkByFirstLetter';
 import getDrinkByIngredient from '../services/getDrinkByIngredient';
 import getDrinkByName from '../services/getDrinkByName';
@@ -10,6 +11,7 @@ import getFoodByName from '../services/getFoodByName';
 function SearchBar() {
   const history = useHistory();
   const path = history.location.pathname;
+  const { setFoodList, setDrinkList } = useContext(MyContext);
 
   const fetchInFoods = async (selected, inputText) => {
     let result = [];
@@ -22,7 +24,7 @@ function SearchBar() {
     if (selected === 'firstRadio') {
       result = await getFoodByFirstLetter(inputText);
     }
-    console.log(result);
+    setFoodList(result.meals);
   };
 
   const fetchInDrinks = async (selected, inputText) => {
@@ -36,7 +38,7 @@ function SearchBar() {
     if (selected === 'firstRadio') {
       result = await getDrinkByFirstLetter(inputText);
     }
-    console.log(result);
+    setDrinkList(result.drinks);
   };
 
   const submitSearch = () => {

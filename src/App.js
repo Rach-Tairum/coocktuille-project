@@ -12,10 +12,11 @@ import InProgress from './pages/InProgress';
 import Login from './pages/Login';
 import Nationalities from './pages/Nationalities';
 import Profile from './pages/Profile';
+import Provider from './context/Provider';
 
 function App() {
   return (
-    <>
+    <Provider>
       <h1>App</h1>
       <Router>
         <Switch>
@@ -37,7 +38,7 @@ function App() {
           <Route path="/favorite-recipes" component={ FavoriteRecipes } />
         </Switch>
       </Router>
-    </>
+    </Provider>
   );
 }
 
