@@ -1,8 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-// import getDrinkByFirstLetter from '../services/getDrinkByFirstLetter';
-// import getDrinkByIngredient from '../services/getDrinkByIngredient';
-// import getDrinkByName from '../services/getDrinkByName';
+import getDrinkByFirstLetter from '../services/getDrinkByFirstLetter';
+import getDrinkByIngredient from '../services/getDrinkByIngredient';
+import getDrinkByName from '../services/getDrinkByName';
 import getFoodByFirstLetter from '../services/getFoodByFirstLetter';
 import getFoodByIngredient from '../services/getFoodByIngredient';
 import getFoodByName from '../services/getFoodByName';
@@ -25,9 +25,19 @@ function SearchBar() {
     console.log(result);
   };
 
-  // const fetchInDrinks = (selected, inputText) => {
-  //   console.log('Drinks');
-  // };
+  const fetchInDrinks = async (selected, inputText) => {
+    let result = [];
+    if (selected === 'ingredientRadio') {
+      result = await getDrinkByIngredient(inputText);
+    }
+    if (selected === 'nameRadio') {
+      result = await getDrinkByName(inputText);
+    }
+    if (selected === 'firstRadio') {
+      result = await getDrinkByFirstLetter(inputText);
+    }
+    console.log(result);
+  };
 
   const submitSearch = () => {
     const selected = document.querySelector('input[type=\'radio\']:checked').id;
