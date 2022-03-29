@@ -1,5 +1,6 @@
 import React from 'react';
 import { shape } from 'prop-types';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
@@ -37,11 +38,13 @@ function Header() {
 
   return (
     <div>
-      <img
-        data-testid="profile-top-btn"
-        src={ profileIcon }
-        alt="Profile"
-      />
+      <Link to="/profile">
+        <img
+          data-testid="profile-top-btn"
+          src={ profileIcon }
+          alt="Profile"
+        />
+      </Link>
       <h3 data-testid="page-title">{title}</h3>
       { hasSearchButton && <img
         data-testid="search-top-btn"
