@@ -1,6 +1,46 @@
 import React from 'react';
+import { useHistory } from 'react-router';
+// import getDrinkByFirstLetter from '../services/getDrinkByFirstLetter';
+// import getDrinkByIngredient from '../services/getDrinkByIngredient';
+// import getDrinkByName from '../services/getDrinkByName';
+import getFoodByFirstLetter from '../services/getFoodByFirstLetter';
+import getFoodByIngredient from '../services/getFoodByIngredient';
+import getFoodByName from '../services/getFoodByName';
 
 function SearchBar() {
+  const history = useHistory();
+  const path = history.location.pathname;
+
+  const fetchInFoods = async (selected, inputText) => {
+    let result = [];
+    if (selected === 'ingredientRadio') {
+      result = await getFoodByIngredient(inputText);
+    }
+    if (selected === 'nameRadio') {
+      result = await getFoodByName(inputText);
+    }
+    if (selected === 'firstRadio') {
+      result = await getFoodByFirstLetter(inputText);
+    }
+    console.log(result);
+  };
+
+  // const fetchInDrinks = (selected, inputText) => {
+  //   console.log('Drinks');
+  // };
+
+  const submitSearch = () => {
+    const selected = document.querySelector('input[type=\'radio\']:checked').id;
+    const inputText = document.querySelector('#searchInput').value;
+
+    if (selected === 'firstRadio' && inputText.length >= 2) {
+      alert('Your search must have only 1 (one) character');
+    } else {
+      if (path === '/foods') fetchInFoods(selected, inputText);
+      if (path === '/drinks') fetchInDrinks(selected, inputText);
+    }
+  };
+
   return (
     <div>
       <label htmlFor="searchInput">
@@ -43,6 +83,7 @@ function SearchBar() {
         <button
           data-testid="exec-search-btn"
           type="button"
+          onClick={ submitSearch }
         >
           Search
         </button>
