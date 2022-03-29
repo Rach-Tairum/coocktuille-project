@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { shape } from 'prop-types';
+import LowerMenu from '../components/LowerMenu';
 
 function Profile({ history }) {
-  const userEmail = JSON.parse(localStorage.user);
+  let userEmail = '';
+  if (localStorage.user) {
+    userEmail = JSON.parse(localStorage.user);
+  }
 
   const clickLogout = () => {
     localStorage.clear();
@@ -27,6 +31,7 @@ function Profile({ history }) {
       >
         Logout
       </button>
+      <LowerMenu />
     </div>
   );
 }

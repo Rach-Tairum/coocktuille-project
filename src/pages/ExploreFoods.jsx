@@ -1,7 +1,7 @@
 import React from 'react';
 import LowerMenu from '../components/LowerMenu';
 
-function Explore() {
+function ExploreFoods() {
   return (
     <div>
       <h2>Explore</h2>
@@ -10,4 +10,4 @@ function Explore() {
   );
 }
 
-export default Explore;
+export default ExploreFoods;
