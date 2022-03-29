@@ -1,8 +1,12 @@
 import React from 'react';
+import LowerMenu from '../components/LowerMenu';
 
 function Nationalities() {
   return (
-    <h2>Nationalities</h2>
+    <div>
+      <h2>Nationalities</h2>
+      <LowerMenu />
+    </div>
   );
 }
 

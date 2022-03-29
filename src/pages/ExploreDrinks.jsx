@@ -1,15 +1,13 @@
 import React from 'react';
-import Header from '../components/Header';
 import LowerMenu from '../components/LowerMenu';
 
-function Foods() {
+function ExploreDrinks() {
   return (
     <div>
-      <h2>Foods</h2>
-      <Header />
+      <h2>Explore</h2>
       <LowerMenu />
     </div>
   );
 }
 
-export default Foods;
+export default ExploreDrinks;

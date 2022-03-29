@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { shape } from 'prop-types';
 import Header from '../components/Header';
+import LowerMenu from '../components/LowerMenu';
 
 function Profile({ history }) {
   let userEmail = '';
@@ -32,6 +33,7 @@ function Profile({ history }) {
       >
         Logout
       </button>
+      <LowerMenu />
     </div>
   );
 }
