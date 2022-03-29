@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { shape } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
@@ -7,6 +7,8 @@ import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 
 function Header() {
+  const [searchBar, setSearchBar] = useState(false);
+
   const history = useHistory();
   const path = history.location.pathname;
   let title = '';
@@ -37,6 +39,10 @@ function Header() {
 
   setHeader();
 
+  const toggleBar = () => {
+    setSearchBar(!searchBar);
+  };
+
   return (
     <div>
       <Link to="/profile">
@@ -47,12 +53,20 @@ function Header() {
         />
       </Link>
       <h3 data-testid="page-title">{title}</h3>
-      { hasSearchButton && <img
-        data-testid="search-top-btn"
-        src={ searchIcon }
-        alt="Profile"
-      />}
-      <SearchBar />
+      { hasSearchButton
+      && (
+        <button
+          type="button"
+          data-testid="search-top-btn"
+          onClick={ toggleBar }
+          src={ searchIcon }
+        >
+          <img
+            src={ searchIcon }
+            alt="Profile"
+          />
+        </button>)}
+      { searchBar && <SearchBar /> }
     </div>
   );
 }
