@@ -24,7 +24,10 @@ function SearchBar() {
     if (selected === 'firstRadio') {
       result = await getFoodByFirstLetter(inputText);
     }
-    setFoodList(result.meals);
+    // Se encontra alguma receita joga no Context, senão exibe alerta
+    if (result.meals) {
+      setFoodList(result.meals);
+    } else alert('Sorry, we haven\'t found any recipes for these filters.');
   };
 
   const fetchInDrinks = async (selected, inputText) => {
@@ -38,7 +41,10 @@ function SearchBar() {
     if (selected === 'firstRadio') {
       result = await getDrinkByFirstLetter(inputText);
     }
-    setDrinkList(result.drinks);
+    // Se encontra alguma receita joga no Context, senão exibe alerta
+    if (result.drinks) {
+      setDrinkList(result.drinks);
+    } else alert('Sorry, we haven\'t found any recipes for these filters.');
   };
 
   const submitSearch = () => {
