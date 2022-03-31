@@ -5,10 +5,12 @@ import LowerMenu from '../components/LowerMenu';
 import Card from '../components/Card';
 import { MyContext } from '../context/Provider';
 import getFoodCategories from '../services/getFoodCategories';
+import getListFoodsInCategory from '../services/getListFoodsInCategory';
 
 function Foods() {
   let { foodList } = useContext(MyContext);
   const [foodCategories, setFoodCategories] = useState([]);
+  const [foodsInCategories, setFoodsInCategories] = useState([]);
 
   // imita a renderização dos cards em 12
   const maxLengthFoodList = 12;
@@ -29,6 +31,16 @@ function Foods() {
     setFoodCategories(foodCategories.slice(0, maxLengthCategoryFood));
   }
 
+  const maxLengthFoodsInCategory = 12;
+  if (foodsInCategories.length > maxLengthFoodsInCategory) {
+    setFoodsInCategories(foodsInCategories.slice(0, maxLengthFoodsInCategory));
+  }
+
+  const getRecipes = async () => {
+    const response = await getListFoodsInCategory('Seafood');
+    console.log('na categoria: ', response);
+  };
+
   return (
     <div>
       <h2>Foods</h2>
@@ -39,6 +51,7 @@ function Foods() {
           data-testid={ `${category.strCategory}-category-filter` }
           key={ index }
           type="button"
+          onClick={ getRecipes }
         >
           { category.strCategory }
         </button>
