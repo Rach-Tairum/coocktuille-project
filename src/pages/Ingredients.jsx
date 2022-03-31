@@ -1,8 +1,12 @@
 import React from 'react';
+import LowerMenu from '../components/LowerMenu';
 
 function Ingredients() {
   return (
-    <h2>Ingredients</h2>
+    <div>
+      <h2>Ingredients</h2>
+      <LowerMenu />
+    </div>
   );
 }
 

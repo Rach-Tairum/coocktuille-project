@@ -1,0 +1,9 @@
+.lowerMenu {
+  bottom: 0;
+  position: fixed;
+}
+
+.buttonMenu {
+  height: 90px;
+  width: 50px;
+}
