@@ -4,7 +4,7 @@ import LowerMenu from '../components/LowerMenu';
 function ExploreDrinks() {
   return (
     <div>
-      <h2>Explore</h2>
+      <h2>ExploreDrinks</h2>
       <LowerMenu />
     </div>
   );
