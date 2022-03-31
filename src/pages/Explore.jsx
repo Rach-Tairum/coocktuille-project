@@ -10,6 +10,7 @@ function Explore() {
     <div>
       <h2>Explore</h2>
       <Header />
+
       <button
         type="button"
         data-testid="explore-foods"
@@ -17,6 +18,7 @@ function Explore() {
       >
         Explore Foods
       </button>
+
       <button
         type="button"
         data-testid="explore-drinks"
@@ -24,6 +26,7 @@ function Explore() {
       >
         Explore Drinks
       </button>
+
       <LowerMenu />
     </div>
   );
