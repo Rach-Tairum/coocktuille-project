@@ -19,7 +19,6 @@ function Login({ history }) {
     if (password.length >= minLength) {
       validationArray.push(true);
     } else { validationArray.push(false); }
-    console.log(validationArray);
     const validation = validationArray.some((el) => el !== true);
 
     setDisabled(validation);
