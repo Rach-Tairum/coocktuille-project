@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import LowerMenu from '../components/LowerMenu';
 import Card from '../components/Card';
@@ -89,21 +89,23 @@ function Drinks() {
       {drinkList.length === 1 && <Redirect to={ `/drinks/${drinkList[0].idDrink}` } />}
       {drinkList.length > 1
       && toggleCategory && recipesByCategory.map((drink, index) => (
-        <Card
-          key={ `${index}-recipesByCategory` }
-          name={ drink.strDrink }
-          img={ drink.strDrinkThumb }
-          index={ index }
-        />
+        <Link to={ `/drinks/${drink.idDrink}` } key={ `${index}-recipesByCategory` }>
+          <Card
+            name={ drink.strDrink }
+            img={ drink.strDrinkThumb }
+            index={ index }
+          />
+        </Link>
       ))}
       {drinkList.length > 1
       && !toggleCategory && drinkList.map((drink, index) => (
-        <Card
-          key={ `${index}-drinkList` }
-          name={ drink.strDrink }
-          img={ drink.strDrinkThumb }
-          index={ index }
-        />
+        <Link to={ `/drinks/${drink.idDrink}` } key={ `${index}-drinkList` }>
+          <Card
+            name={ drink.strDrink }
+            img={ drink.strDrinkThumb }
+            index={ index }
+          />
+        </Link>
       ))}
       <LowerMenu />
     </div>
