@@ -6,8 +6,7 @@ import getDrinkRecipe from '../services/getDrinkRecipe';
 function Details() {
   const history = useHistory();
   const path = history.location.pathname;
-  const idLength = 5;
-  const id = path.slice(path.length - idLength);
+  const id = path.replace(/[^0-9]/g, '');
   let type = '';
   if (path.includes('food')) type = 'food';
   if (path.includes('drink')) type = 'drink';
