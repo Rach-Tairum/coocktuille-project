@@ -1,9 +1,9 @@
 import React from 'react';
 
-function NotFund() {
+function NotFound() {
   return (
-    <h1>Page not fund</h1>
+    <h1>Not Found</h1>
   );
 }
 
-export default NotFund
+export default NotFound;
