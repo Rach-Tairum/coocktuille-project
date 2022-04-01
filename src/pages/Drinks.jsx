@@ -15,6 +15,9 @@ function Drinks() {
   } = useContext(MyContext);
 
   const [drinksCategories, setDrinksCategories] = useState([]);
+  const [toggleCategory, setToggleCategory] = useState(false);
+  const [toggleObj, setToggleObj] = useState({
+    0: false, 1: false, 2: false, 3: false, 4: false });
 
   const maxLengthList = 12;
 
@@ -43,7 +46,11 @@ function Drinks() {
     setDrinksCategories(drinksCategories.slice(0, maxLengthCategoryDrinks));
   }
 
-  const getRecipes = async (categoryName) => {
+  const getRecipes = async (categoryName, index) => {
+    const newToggleObj = toggleObj;
+    newToggleObj[index] = !newToggleObj[index];
+    setToggleObj(newToggleObj);
+    setToggleCategory(newToggleObj[index]);
     const recipesList = await getDrinksByCategory(categoryName);
     if (recipesList.length > maxLengthList) {
       setRecipesByCategory(recipesList.slice(0, maxLengthList));
@@ -61,16 +68,26 @@ function Drinks() {
           data-testid={ `${category.strCategory}-category-filter` }
           key={ index }
           type="button"
-          onClick={ () => getRecipes(category.strCategory) }
+          onClick={ () => getRecipes(category.strCategory, index) }
         >
           { category.strCategory }
         </button>
       ))}
 
       {drinkList.length === 1 && <Redirect to={ `/drinks/${drinkList[0].idDrink}` } />}
-      {drinkList.length > 1 && recipesByCategory.map((drink, index) => (
+      {drinkList.length > 1
+      && toggleCategory && recipesByCategory.map((drink, index) => (
         <Card
-          key={ index }
+          key={ `${index}-recipesByCategory` }
+          name={ drink.strDrink }
+          img={ drink.strDrinkThumb }
+          index={ index }
+        />
+      ))}
+      {drinkList.length > 1
+      && !toggleCategory && drinkList.map((drink, index) => (
+        <Card
+          key={ `${index}-drinkList` }
           name={ drink.strDrink }
           img={ drink.strDrinkThumb }
           index={ index }
