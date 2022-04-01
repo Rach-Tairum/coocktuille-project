@@ -7,6 +7,7 @@ function Provider({ children }) {
   const [foodList, setFoodList] = useState([]);
   const [drinkList, setDrinkList] = useState([]);
   const [recipesByCategory, setRecipesByCategory] = useState([]);
+  const [recipesByIngredients, setRecipesByIngredients] = useState([]);
 
   const contextValues = {
     foodList,
@@ -15,6 +16,8 @@ function Provider({ children }) {
     setDrinkList,
     recipesByCategory,
     setRecipesByCategory,
+    recipesByIngredients,
+    setRecipesByIngredients,
   };
 
   return (

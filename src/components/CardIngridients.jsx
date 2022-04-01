@@ -1,17 +1,23 @@
 import React from 'react';
 import { string, number } from 'prop-types';
 
-function CardIngridient({ name, img, index }) {
+function CardIngridient({ name, img, index, onClick }) {
   return (
-    <div data-testid={ `${index}-ingredient-card` }>
+    <button
+      type="button"
+      id={ name }
+      onClick={ onClick }
+      data-testid={ `${index}-ingredient-card` }
+    >
       <img
         data-testid={ `${index}-card-img` }
+        id={ name }
         src={ img }
         alt={ name }
         width="150"
       />
-      <p data-testid={ `${index}-card-name` }>{name}</p>
-    </div>
+      <p id={ name } data-testid={ `${index}-card-name` }>{name}</p>
+    </button>
   );
 }
 
