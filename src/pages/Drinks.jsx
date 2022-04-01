@@ -59,10 +59,22 @@ function Drinks() {
     }
   };
 
+  const resetFilters = () => {
+    setToggleObj({ 0: false, 1: false, 2: false, 3: false, 4: false });
+    setToggleCategory(false);
+  };
+
   return (
     <div>
       <h2>Drinks</h2>
       <Header />
+      <button
+        data-testid="All-category-filter"
+        type="button"
+        onClick={ resetFilters }
+      >
+        All
+      </button>
       { drinksCategories.length && drinksCategories.map((category, index) => (
         <button
           data-testid={ `${category.strCategory}-category-filter` }
