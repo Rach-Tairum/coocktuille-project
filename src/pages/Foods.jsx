@@ -9,9 +9,13 @@ import getFoodsByCategory from '../services/getFoodsByCategory';
 import getListFoods from '../services/getListFoods';
 
 function Foods() {
-  const { foodList, setFoodList } = useContext(MyContext);
+  const {
+    foodList, setFoodList,
+    recipesByCategory, setRecipesByCategory,
+  } = useContext(MyContext);
+
   const [foodCategories, setFoodCategories] = useState([]);
-  const [recipesByCategory, setRecipesByCategory] = useState([]);
+
   const maxLengthList = 12;
 
   useEffect(() => {
@@ -24,7 +28,7 @@ function Foods() {
       } else setFoodList(allFoods);
     };
     fetchFoods();
-  }, [setFoodList]);
+  }, [setFoodList, setRecipesByCategory]);
 
   useEffect(() => {
     const getCategories = async () => {
