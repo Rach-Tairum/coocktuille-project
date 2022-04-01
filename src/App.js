@@ -13,6 +13,8 @@ import Login from './pages/Login';
 import Nationalities from './pages/Nationalities';
 import Profile from './pages/Profile';
 import Provider from './context/Provider';
+import ExploreDrinks from './pages/ExploreDrinks';
+import ExploreFoods from './pages/ExploreFoods';
 
 function App() {
   return (
@@ -28,8 +30,8 @@ function App() {
           <Route path="/foods/:id/in-progress" component={ InProgress } />
           <Route path="/drinks/:id/in-progress" component={ InProgress } />
           <Route exact path="/explore" component={ Explore } />
-          <Route path="/explore/foods" component={ Explore } />
-          <Route path="/explore/drinks" component={ Explore } />
+          <Route exact path="/explore/foods" component={ ExploreFoods } />
+          <Route exact path="/explore/drinks" component={ ExploreDrinks } />
           <Route path="/explore/foods/ingredients" component={ Ingredients } />
           <Route path="/explore/drinks/ingredients" component={ Ingredients } />
           <Route path="/explore/foods/nationalities" component={ Nationalities } />
