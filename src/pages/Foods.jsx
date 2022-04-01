@@ -8,10 +8,20 @@ import getFoodCategories from '../services/getFoodCategories';
 import getFoodsByCategory from '../services/getFoodsByCategory';
 import getListFoods from '../services/getListFoods';
 
+const maxRecipesIngredients = (recipes, maxLengthList, setFoodList) => {
+  if (recipes.length > maxLengthList) {
+    setFoodList(recipes.slice(0, maxLengthList));
+  } else {
+    setFoodList(recipes);
+  }
+};
+
 function Foods() {
   const {
     foodList, setFoodList,
     recipesByCategory, setRecipesByCategory,
+    recipesByIngredients,
+    setRecipesByIngredients,
   } = useContext(MyContext);
 
   const [foodCategories, setFoodCategories] = useState([]);
@@ -22,16 +32,19 @@ function Foods() {
   const maxLengthList = 12;
 
   useEffect(() => {
-    const fetchFoods = async () => {
-      const allFoods = await getListFoods();
-      // Limita a renderização dos cards em 12
-      if (allFoods.length > maxLengthList) {
-        setFoodList(allFoods.slice(0, maxLengthList));
-        setRecipesByCategory(allFoods.slice(0, maxLengthList));
-      } else setFoodList(allFoods);
-    };
-    fetchFoods();
-  }, [setFoodList, setRecipesByCategory]);
+    if (recipesByIngredients.length === 0) {
+      const fetchFoods = async () => {
+        const allFoods = await getListFoods();
+        // Limita a renderização dos cards em 12
+        if (allFoods.length > maxLengthList) {
+          setFoodList(allFoods.slice(0, maxLengthList));
+          setRecipesByCategory(allFoods.slice(0, maxLengthList));
+        } else setFoodList(allFoods);
+      };
+      fetchFoods();
+    }
+    maxRecipesIngredients(recipesByIngredients, maxLengthList, setFoodList);
+  }, [setFoodList, setRecipesByCategory, recipesByIngredients]);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -62,6 +75,7 @@ function Foods() {
   const resetFilters = () => {
     setToggleObj({ 0: false, 1: false, 2: false, 3: false, 4: false });
     setToggleCategory(false);
+    setRecipesByIngredients([]);
   };
 
   return (

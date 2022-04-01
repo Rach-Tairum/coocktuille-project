@@ -8,10 +8,20 @@ import getDrinkCategories from '../services/getDrinkCategories';
 import getDrinksByCategory from '../services/getDrinksByCategory';
 import getListDrinks from '../services/getListDrinks';
 
+const maxRecipesIngredients = (recipes, maxLengthList, setDrinkList) => {
+  if (recipes.length > maxLengthList) {
+    setDrinkList(recipes.slice(0, maxLengthList));
+  } else {
+    setDrinkList(recipes);
+  }
+};
+
 function Drinks() {
   const {
     drinkList, setDrinkList,
     recipesByCategory, setRecipesByCategory,
+    recipesIngredientsDrink,
+    setRecipesIngredientsDrink,
   } = useContext(MyContext);
 
   const [drinksCategories, setDrinksCategories] = useState([]);
@@ -22,16 +32,19 @@ function Drinks() {
   const maxLengthList = 12;
 
   useEffect(() => {
-    const fetchDrinks = async () => {
-      const allDrinks = await getListDrinks();
-      // Limita a renderização dos cards em 12
-      if (allDrinks.length > maxLengthList) {
-        setDrinkList(allDrinks.slice(0, maxLengthList));
-        setRecipesByCategory(allDrinks.slice(0, maxLengthList));
-      } else setFoodList(allDrinks);
-    };
-    fetchDrinks();
-  }, [setDrinkList, setRecipesByCategory]);
+    if (recipesIngredientsDrink.length === 0) {
+      const fetchDrinks = async () => {
+        const allDrinks = await getListDrinks();
+        // Limita a renderização dos cards em 12
+        if (allDrinks.length > maxLengthList) {
+          setDrinkList(allDrinks.slice(0, maxLengthList));
+          setRecipesByCategory(allDrinks.slice(0, maxLengthList));
+        } else setFoodList(allDrinks);
+      };
+      fetchDrinks();
+    }
+    maxRecipesIngredients(recipesIngredientsDrink, maxLengthList, setDrinkList);
+  }, [setDrinkList, setRecipesByCategory, recipesIngredientsDrink]);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -62,6 +75,7 @@ function Drinks() {
   const resetFilters = () => {
     setToggleObj({ 0: false, 1: false, 2: false, 3: false, 4: false });
     setToggleCategory(false);
+    setRecipesIngredientsDrink([]);
   };
 
   return (
