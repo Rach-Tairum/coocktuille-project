@@ -11,7 +11,11 @@ import getFoodByName from '../services/getFoodByName';
 function SearchBar() {
   const history = useHistory();
   const path = history.location.pathname;
-  const { setFoodList, setDrinkList } = useContext(MyContext);
+  const maxLengthList = 12;
+  const {
+    setFoodList, setDrinkList,
+    setRecipesByCategory,
+  } = useContext(MyContext);
 
   const fetchInFoods = async (selected, inputText) => {
     let result = [];
@@ -25,8 +29,10 @@ function SearchBar() {
       result = await getFoodByFirstLetter(inputText);
     }
     // Se encontra alguma receita joga no Context, senão exibe alerta
-    if (result.meals) {
-      setFoodList(result.meals);
+    if (result) {
+      if (result.length > maxLengthList) result = result.slice(0, maxLengthList);
+      setFoodList(result);
+      setRecipesByCategory(result);
     } else alert('Sorry, we haven\'t found any recipes for these filters.');
   };
 
@@ -42,8 +48,10 @@ function SearchBar() {
       result = await getDrinkByFirstLetter(inputText);
     }
     // Se encontra alguma receita joga no Context, senão exibe alerta
-    if (result.drinks) {
-      setDrinkList(result.drinks);
+    if (result) {
+      if (result.length > maxLengthList) result = result.slice(0, maxLengthList);
+      setDrinkList(result);
+      setRecipesByCategory(result);
     } else alert('Sorry, we haven\'t found any recipes for these filters.');
   };
 
