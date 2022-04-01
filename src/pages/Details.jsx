@@ -1,6 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router';
+import getFoodRecipe from '../services/getFoodRecipe';
+import getDrinkRecipe from '../services/getDrinkRecipe';
 
 function Details() {
+  const history = useHistory();
+  const path = history.location.pathname;
+  const idLength = 5;
+  const id = path.slice(path.length - idLength);
+  let type = '';
+  if (path.includes('food')) type = 'food';
+  if (path.includes('drink')) type = 'drink';
+
+  const [details, setDetails] = useState();
+
+  useEffect(() => {
+    const fetchDetails = async () => {
+      console.log(type);
+      if (type === 'food') {
+        const arrayList = await getFoodRecipe(id);
+        setDetails(arrayList[0]);
+      }
+      if (type === 'drink') {
+        const arrayList = await getDrinkRecipe(id);
+        setDetails(arrayList[0]);
+      }
+    };
+    fetchDetails();
+  }, [id, type]);
+
+  console.log(details);
+
   return (
     <>
       <h2>Details</h2>
