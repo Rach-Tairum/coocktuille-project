@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import getFoodRecipe from '../services/getFoodRecipe';
 import getDrinkRecipe from '../services/getDrinkRecipe';
 import Ingredients from '../components/Ingredients';
+import Recommendations from '../components/Recommendations';
 
 function Details() {
   const history = useHistory();
@@ -72,7 +73,9 @@ function Details() {
         title="YouTube video player"
         frameBorder="0"
       />}
-      <div data-testid="0-recomendation-card">Recommendations</div>
+      <Recommendations
+        type={ type }
+      />
       <button
         data-testid="start-recipe-btn"
         type="button"
