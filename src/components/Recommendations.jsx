@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { string } from 'prop-types';
 import getDrinkByName from '../services/getDrinkByName';
 import getFoodByName from '../services/getFoodByName';
-import styles from './Recommendations.module.css';
+import '../Recommendations.css';
 
 function Recommendations({ type }) {
   const [recommendationsList, setRecommendationsList] = useState([]);
@@ -26,10 +26,10 @@ function Recommendations({ type }) {
   }, [type]);
 
   return (
-    <div className={ styles.wrapper }>
+    <div className="wrapper">
       {recommendationsList.map((recipe, index) => (
         <div
-          className={ styles.card }
+          className="card"
           data-testid={ `${index}-recomendation-card` }
           key={ index }
         >
