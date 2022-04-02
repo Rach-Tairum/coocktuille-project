@@ -1,7 +1,7 @@
 import React from 'react';
 import { string, number } from 'prop-types';
 
-function CardIngridient({ name, img, index, onClick }) {
+function CardIngredient({ name, img, index, onClick }) {
   return (
     <button
       type="button"
@@ -21,9 +21,9 @@ function CardIngridient({ name, img, index, onClick }) {
   );
 }
 
-export default CardIngridient;
+export default CardIngredient;
 
-CardIngridient.propTypes = {
+CardIngredient.propTypes = {
   name: string,
   img: string,
   index: number,
