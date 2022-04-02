@@ -4,6 +4,7 @@ import getFoodRecipe from '../services/getFoodRecipe';
 import getDrinkRecipe from '../services/getDrinkRecipe';
 import Ingredients from '../components/Ingredients';
 import Recommendations from '../components/Recommendations';
+import '../Details.css';
 
 function Details() {
   const history = useHistory();
@@ -79,6 +80,7 @@ function Details() {
       <button
         data-testid="start-recipe-btn"
         type="button"
+        className="start"
       >
         Start Recipe
       </button>
