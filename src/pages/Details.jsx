@@ -2,27 +2,33 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import getFoodRecipe from '../services/getFoodRecipe';
 import getDrinkRecipe from '../services/getDrinkRecipe';
+import Ingredients from '../components/Ingredients';
 
 function Details() {
   const history = useHistory();
   const path = history.location.pathname;
   const id = path.replace(/[^0-9]/g, '');
   let type = '';
-  if (path.includes('food')) type = 'food';
-  if (path.includes('drink')) type = 'drink';
+  if (path.includes('food')) type = 'Meal';
+  if (path.includes('drink')) type = 'Drink';
 
-  const [details, setDetails] = useState();
+  const [details, setDetails] = useState({});
+  const [youtubeCode, setYoutubeCode] = useState('');
+  const [category, setCategory] = useState('');
 
   useEffect(() => {
     const fetchDetails = async () => {
-      console.log(type);
-      if (type === 'food') {
+      if (type === 'Meal') {
+        const linkLength = 32;
         const arrayList = await getFoodRecipe(id);
         setDetails(arrayList[0]);
+        setYoutubeCode(arrayList[0].strYoutube.substr(linkLength));
+        setCategory(arrayList[0].strCategory);
       }
-      if (type === 'drink') {
+      if (type === 'Drink') {
         const arrayList = await getDrinkRecipe(id);
         setDetails(arrayList[0]);
+        setCategory(arrayList[0].strAlcoholic);
       }
     };
     fetchDetails();
@@ -31,11 +37,16 @@ function Details() {
   console.log(details);
 
   return (
-    <>
+    <div>
       <h2>Details</h2>
-      <img data-testid="recipe-photo" alt="Recipe Img" />
-      <h3 data-testid="recipe-title">Title</h3>
-      <h5 data-testid="recipe-category">Category</h5>
+      <img
+        data-testid="recipe-photo"
+        src={ details[`str${type}Thumb`] }
+        alt="Recipe Img"
+        width="360"
+      />
+      <h2 data-testid="recipe-title">{ details[`str${type}`] }</h2>
+      <h4 data-testid="recipe-category">{ category }</h4>
       <button
         data-testid="share-btn"
         type="button"
@@ -48,11 +59,19 @@ function Details() {
       >
         Favorite
       </button>
-      <ul>
-        <li data-testid="0-ingredient-name-and-measure">Ingredient</li>
-      </ul>
-      <p data-testid="instructions">Instructions</p>
-      <iframe data-testid="video" width="320" height="180" src="https://www.youtube.com/embed/lJIrF4YjHfQ" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" />
+      <Ingredients
+        details={ details }
+        type={ type }
+      />
+      <p data-testid="instructions">{ details.strInstructions }</p>
+      {youtubeCode && <iframe
+        data-testid="video"
+        width="320"
+        height="180"
+        src={ `https://youtube.com/embed/${youtubeCode}` }
+        title="YouTube video player"
+        frameBorder="0"
+      />}
       <div data-testid="0-recomendation-card">Recommendations</div>
       <button
         data-testid="start-recipe-btn"
@@ -60,7 +79,7 @@ function Details() {
       >
         Start Recipe
       </button>
-    </>
+    </div>
   );
 }
 
