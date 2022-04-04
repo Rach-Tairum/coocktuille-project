@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import CardIngridient from '../components/CardIngridients';
+import CardIngredient from '../components/CardIngredient';
 import LowerMenu from '../components/LowerMenu';
-import getListOfFoodByIngredients from '../services/getListOfFoodIngridients';
+import getListOfFoodByIngredients from '../services/getListOfFoodByIngredients';
 import getFoodByIngredient from '../services/getFoodByIngredient';
 import { MyContext } from '../context/Provider';
+import Header from '../components/Header';
 
 function FoodIngredients() {
   const [foodIngredientsList, setFoodIngredientsList] = useState([]);
@@ -23,11 +24,9 @@ function FoodIngredients() {
 
   const redirectIngredient = ({ target }) => {
     const { id } = target;
-    console.log(id);
     const fetchIngredient = async () => {
       const result = await getFoodByIngredient(id);
       setRecipesByIngredients(result);
-      console.log(result, 'result');
       history.push('/foods');
     };
     fetchIngredient();
@@ -36,14 +35,15 @@ function FoodIngredients() {
   return (
     <div>
       <h2>Food Ingredients</h2>
+      <Header />
       {foodIngredientsList.map(
-        (ingridient, index) => (
-          <CardIngridient
-            key={ ingridient.idIngredient }
+        (ingredient, index) => (
+          <CardIngredient
+            key={ ingredient.idIngredient }
             onClick={ redirectIngredient }
             index={ index }
-            name={ ingridient.strIngredient }
-            img={ `https://www.themealdb.com/images/ingredients/${ingridient.strIngredient}-Small.png` }
+            name={ ingredient.strIngredient }
+            img={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
           />),
       )}
       <LowerMenu />

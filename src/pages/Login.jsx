@@ -34,7 +34,7 @@ function Login({ history }) {
     const userInfo = { email };
     if (!localStorage.mealsToken) localStorage.setItem('mealsToken', '1');
     if (!localStorage.cocktailsToken) localStorage.setItem('cocktailsToken', '1');
-    if (!localStorage.user) localStorage.setItem('user', JSON.stringify(userInfo));
+    localStorage.setItem('user', JSON.stringify(userInfo));
 
     history.push('/foods');
   };

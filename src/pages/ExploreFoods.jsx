@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import Header from '../components/Header';
 import LowerMenu from '../components/LowerMenu';
 import getSurpriseFoods from '../services/getSurpriseFoods';
 
@@ -23,7 +24,7 @@ function ExploreFoods() {
   return (
     <div>
       <h2>Explore Foods</h2>
-
+      <Header />
       <button
         type="button"
         data-testid="explore-by-ingredient"
