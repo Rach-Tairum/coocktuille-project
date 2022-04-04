@@ -9,8 +9,16 @@ import StartRecipeBtn from '../components/StartRecipeBtn';
 import FavoriteBtn from '../components/FavoriteBtn';
 import ContinueBtn from '../components/ContinueBtn';
 
-const inProgressCheck = (id, type, status, setStatus) => {
+const inProgressStatus = (id, idList, status, setStatus) => {
   const newStatus = status;
+  const found = idList.filter((recipeId) => recipeId === id);
+  if (found.length) {
+    newStatus.inProgress = true;
+    setStatus(newStatus);
+  }
+};
+
+const inProgressCheck = (id, type, status, setStatus) => {
   const inProgressObj = {
     cocktails: {},
     meals: {},
@@ -21,18 +29,10 @@ const inProgressCheck = (id, type, status, setStatus) => {
   const recipesObj = JSON.parse(localStorage.inProgressRecipes);
   if (type === 'Meal') {
     const idList = Object.keys(recipesObj.meals);
-    const found = idList.filter((recipeId) => recipeId === id);
-    if (found.length) {
-      newStatus.inProgress = true;
-      setStatus(newStatus);
-    }
+    inProgressStatus(id, idList, status, setStatus);
   } else {
     const idList = Object.keys(recipesObj.cocktails);
-    const found = idList.filter((recipeId) => recipeId === id);
-    if (found.length) {
-      newStatus.inProgress = true;
-      setStatus(newStatus);
-    }
+    inProgressStatus(id, idList, status, setStatus);
   }
 };
 

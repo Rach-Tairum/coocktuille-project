@@ -7,32 +7,32 @@ import Recommendations from '../components/Recommendations';
 import '../Details.css';
 import FavoriteBtn from '../components/FavoriteBtn';
 
-const inProgressCheck = (id, type, status, setStatus) => {
-  const newStatus = status;
-  const inProgressObj = {
-    cocktails: {},
-    meals: {},
-  };
-  if (!localStorage.inProgressRecipes) {
-    localStorage.inProgressRecipes = JSON.stringify(inProgressObj);
-  }
-  const recipesObj = JSON.parse(localStorage.inProgressRecipes);
-  if (type === 'Meal') {
-    const idList = Object.keys(recipesObj.meals);
-    const found = idList.filter((recipeId) => recipeId === id);
-    if (found.length) {
-      newStatus.inProgress = true;
-      setStatus(newStatus);
-    }
-  } else {
-    const idList = Object.keys(recipesObj.cocktails);
-    const found = idList.filter((recipeId) => recipeId === id);
-    if (found.length) {
-      newStatus.inProgress = true;
-      setStatus(newStatus);
-    }
-  }
-};
+// const inProgressCheck = (id, type, status, setStatus) => {
+//   const newStatus = status;
+//   const inProgressObj = {
+//     cocktails: {},
+//     meals: {},
+//   };
+//   if (!localStorage.inProgressRecipes) {
+//     localStorage.inProgressRecipes = JSON.stringify(inProgressObj);
+//   }
+//   const recipesObj = JSON.parse(localStorage.inProgressRecipes);
+//   if (type === 'Meal') {
+//     const idList = Object.keys(recipesObj.meals);
+//     const found = idList.filter((recipeId) => recipeId === id);
+//     if (found.length) {
+//       newStatus.inProgress = true;
+//       setStatus(newStatus);
+//     }
+//   } else {
+//     const idList = Object.keys(recipesObj.cocktails);
+//     const found = idList.filter((recipeId) => recipeId === id);
+//     if (found.length) {
+//       newStatus.inProgress = true;
+//       setStatus(newStatus);
+//     }
+//   }
+// };
 
 const statusCheck = (id, status, setStatus) => {
   const keys = ['done', 'favorite'];
@@ -78,7 +78,7 @@ function InProgress() {
       }
     };
     statusCheck(id, status, setStatus);
-    inProgressCheck(id, type, status, setStatus);
+    // inProgressCheck(id, type, status, setStatus);
     fetchDetails();
   }, [id, type, status]);
 
