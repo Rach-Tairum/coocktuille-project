@@ -26,7 +26,7 @@ function StartRecipeBtn({ id, type }) {
     <button
       data-testid="start-recipe-btn"
       type="button"
-      className="start"
+      className="fixed-btn"
       onClick={ startRecipe }
     >
       Start Recipe
