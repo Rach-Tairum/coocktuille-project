@@ -7,20 +7,40 @@ import shareIcon from '../images/shareIcon.svg';
 function FavoriteRecipes() {
   const [favoriteRecipesList, setFavoriteRecipesList] = useState([]);
   const [toggle, setToggle] = useState(false);
+  const [filterRecipes, setFilterRecipes] = useState([]);
+
   useEffect(() => {
+    setFilterRecipes(JSON.parse(localStorage.favoriteRecipes));
     setFavoriteRecipesList(JSON.parse(localStorage.favoriteRecipes));
   }, []);
 
-  console.log(favoriteRecipesList, 'listFavorites');
+  const favoritesFoods = () => {
+    const favoriteListFoods = favoriteRecipesList.filter(
+      (foods) => foods.type === 'food',
+    );
+    setFilterRecipes(favoriteListFoods);
+  };
 
-  // a foto da receita, o nome, a categoria, a nacionalidade
+  const favoritesDrinks = () => {
+    const favoriteListDrinks = favoriteRecipesList.filter(
+      (drinks) => drinks.type === 'drink',
+    );
+    setFilterRecipes(favoriteListDrinks);
+  };
+
+  console.log(filterRecipes, 'filter');
 
   const removeItem = ({ target }) => {
     const { id } = target;
     const removeItens = favoriteRecipesList.filter((item) => item.id !== id);
     setFavoriteRecipesList(removeItens);
+    setFilterRecipes(removeItens);
     const recipesLocal = JSON.stringify(removeItens);
     localStorage.setItem('favoriteRecipes', recipesLocal);
+  };
+
+  const favorites = () => {
+    setFilterRecipes(favoriteRecipesList);
   };
 
   return (
@@ -31,6 +51,7 @@ function FavoriteRecipes() {
       <button
         type="button"
         data-testid="filter-by-all-btn"
+        onClick={ favorites }
       >
         All
       </button>
@@ -38,6 +59,7 @@ function FavoriteRecipes() {
       <button
         type="button"
         data-testid="filter-by-food-btn"
+        onClick={ favoritesFoods }
       >
         Foods
       </button>
@@ -45,11 +67,12 @@ function FavoriteRecipes() {
       <button
         type="button"
         data-testid="filter-by-drink-btn"
+        onClick={ favoritesDrinks }
       >
         Drinks
       </button>
 
-      { favoriteRecipesList.map((favoriteItem, index) => (
+      { filterRecipes.map((favoriteItem, index) => (
         <div key={ favoriteItem.id }>
           <img
             data-testid={ `${index}-horizontal-image` }
@@ -79,7 +102,6 @@ function FavoriteRecipes() {
             type="button"
             src={ shareIcon }
             onClick={ () => {
-              // http://localhost:3000/favorite-recipes
               copy(`http://localhost:3000/${favoriteItem.type}s/${favoriteItem.id}`);
               setToggle(!toggle);
             } }
