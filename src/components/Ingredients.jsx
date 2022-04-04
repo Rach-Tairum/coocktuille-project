@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { object, string } from 'prop-types';
+import { object, string, bool } from 'prop-types';
 
-function Ingredients({ details, type }) {
+function Ingredients({ details, type, inProgress }) {
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
 
@@ -24,12 +24,31 @@ function Ingredients({ details, type }) {
 
   return (
     <ul>
-      {ingredients.map((ingredient, index) => (
+      {!inProgress && ingredients.map((ingredient, index) => (
         <li
           data-testid={ `${index}-ingredient-name-and-measure` }
           key={ index }
         >
           {`${measures[index]} ${ingredient}`}
+        </li>
+      ))}
+      {inProgress && ingredients.map((ingredient, index) => (
+        <li
+          data-testid={ `${index}-ingredient-step` }
+          key={ index }
+        >
+          <input
+            type="checkbox"
+            id={ `${ingredient}` }
+            name={ `${ingredient}` }
+            value={ index }
+          />
+          <label
+            htmlFor={ `${ingredient}` }
+          >
+            {`${measures[index]} ${ingredient}`}
+
+          </label>
         </li>
       ))}
     </ul>
@@ -40,4 +59,5 @@ export default Ingredients;
 Ingredients.propTypes = {
   details: object,
   type: string,
+  inProgress: bool,
 }.isRequired;

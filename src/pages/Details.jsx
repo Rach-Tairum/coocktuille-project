@@ -5,6 +5,21 @@ import getDrinkRecipe from '../services/getDrinkRecipe';
 import Ingredients from '../components/Ingredients';
 import Recommendations from '../components/Recommendations';
 import '../Details.css';
+import StartRecipeBtn from '../components/StartRecipeBtn';
+
+const statusCheck = (id, status, setStatus) => {
+  const keys = ['done', 'favorite', 'inProgress'];
+  for (let i = 0; i <= 2; i += 1) {
+    if (!localStorage[`${keys[i]}Recipes`]) localStorage[`${keys[i]}Recipes`] = '[]';
+    const list = JSON.parse(localStorage[`${keys[i]}Recipes`]);
+    const found = list.filter((recipe) => recipe.id === id);
+    const newStatus = status;
+    if (found.length) {
+      newStatus[`${keys[i]}`] = true;
+      setStatus(newStatus);
+    }
+  }
+};
 
 function Details() {
   const history = useHistory();
@@ -21,20 +36,6 @@ function Details() {
     done: false, favorite: false, inProgress: false,
   });
 
-  const statusCheck = () => {
-    const keys = ['done', 'favorite', 'inProgress'];
-    for (let i = 0; i <= 2; i += 1) {
-      if (!localStorage[`${keys[i]}Recipes`]) localStorage[`${keys[i]}Recipes`] = '[]';
-      const list = JSON.parse(localStorage[`${keys[i]}Recipes`]);
-      const found = list.filter((recipe) => recipe.id === id);
-      const newStatus = status;
-      if (found.length) {
-        newStatus[`${keys[i]}`] = true;
-        setStatus(newStatus);
-      }
-    }
-  };
-
   useEffect(() => {
     const fetchDetails = async () => {
       if (type === 'Meal') {
@@ -49,9 +50,9 @@ function Details() {
         setCategory(arrayList[0].strAlcoholic);
       }
     };
-    statusCheck();
+    statusCheck(id, status, setStatus);
     fetchDetails();
-  }, [id, type]);
+  }, [id, type, status]);
 
   console.log(details);
 
@@ -81,6 +82,7 @@ function Details() {
       <Ingredients
         details={ details }
         type={ type }
+        inProgress={ false }
       />
       <p data-testid="instructions">{ details.strInstructions }</p>
       {youtubeCode && <iframe
@@ -94,13 +96,10 @@ function Details() {
       <Recommendations
         type={ type }
       />
-      <button
-        data-testid="start-recipe-btn"
-        type="button"
-        className="start"
-      >
-        Start Recipe
-      </button>
+      {!status.inProgress && <StartRecipeBtn
+        id={ id }
+        type={ type }
+      />}
     </div>
   );
 }
