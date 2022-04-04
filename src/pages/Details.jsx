@@ -17,9 +17,22 @@ function Details() {
   const [details, setDetails] = useState({});
   const [youtubeCode, setYoutubeCode] = useState('');
   const [category, setCategory] = useState('');
+  const [status, setStatus] = useState({
+    done: false, favorite: false, inProgress: false,
+  });
 
-  const localStorageCheck = () => {
-    if (!localStorage.doneRecipes) localStorage.doneRecipes = '[]';
+  const statusCheck = () => {
+    const keys = ['done', 'favorite', 'inProgress'];
+    for (let i = 0; i <= 2; i += 1) {
+      if (!localStorage[`${keys[i]}Recipes`]) localStorage[`${keys[i]}Recipes`] = '[]';
+      const list = JSON.parse(localStorage[`${keys[i]}Recipes`]);
+      const found = list.filter((recipe) => recipe.id === id);
+      const newStatus = status;
+      if (found.length) {
+        newStatus[`${keys[i]}`] = true;
+        setStatus(newStatus);
+      }
+    }
   };
 
   useEffect(() => {
@@ -30,14 +43,13 @@ function Details() {
         setDetails(arrayList[0]);
         setYoutubeCode(arrayList[0].strYoutube.substr(linkLength));
         setCategory(arrayList[0].strCategory);
-      }
-      if (type === 'Drink') {
+      } else {
         const arrayList = await getDrinkRecipe(id);
         setDetails(arrayList[0]);
         setCategory(arrayList[0].strAlcoholic);
       }
     };
-    localStorageCheck();
+    statusCheck();
     fetchDetails();
   }, [id, type]);
 
