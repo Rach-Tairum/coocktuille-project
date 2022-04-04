@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
 
 function FavoriteRecipes() {
   const [favoriteRecipesList, setFavoriteRecipesList] = useState([]);
@@ -17,25 +19,66 @@ function FavoriteRecipes() {
       <h2>FavoriteRecipes</h2>
       <Header />
 
-      { favoriteRecipesList.map((favoriteItem) => (
+      <button
+        type="button"
+        data-testid="filter-by-all-btn"
+      >
+        All
+      </button>
+
+      <button
+        type="button"
+        data-testid="filter-by-food-btn"
+      >
+        Foods
+      </button>
+
+      <button
+        type="button"
+        data-testid="filter-by-drink-btn"
+      >
+        Drinks
+      </button>
+
+      { favoriteRecipesList.map((favoriteItem, index) => (
         <div key={ favoriteItem.id }>
-          <img src={ favoriteItem.image } alt="imagem do item favoritado" width="100" />
-          <p>{ favoriteItem.name }</p>
+          <img
+            data-testid={ `${index}-horizontal-image` }
+            src={ favoriteItem.image }
+            alt="imagem do item favoritado"
+            width="100"
+          />
+          <p data-testid={ `${index}-horizontal-name` }>{ favoriteItem.name }</p>
           <p>{ favoriteItem.category }</p>
           { favoriteItem.nationality === ''
-            ? <p>{ favoriteItem.alcoholicOrNot }</p>
-            : <p>{ favoriteItem.na }</p> }
+            ? (
+              <p data-testid={ `${index}-horizontal-top-text` }>
+                { favoriteItem.alcoholicOrNot }
+              </p>)
+
+            : (
+              <p
+                data-testid={ `${index}-horizontal-top-text` }
+              >
+
+                {`${favoriteItem.nationality} - ${favoriteItem.category}`}
+
+              </p>) }
 
           <button
+            data-testid={ `${index}-horizontal-share-btn` }
             type="button"
+            src={ shareIcon }
           >
-            Compartilhar
+            <img src={ shareIcon } alt="ícone de compartilhar" />
           </button>
 
           <button
             type="button"
+            data-testid={ `${index}-horizontal-favorite-btn` }
+            src={ blackHeartIcon }
           >
-            Desfavoritar
+            <img src={ blackHeartIcon } alt=" ícone de favoritar e desfavoritar item" />
           </button>
 
         </div>
