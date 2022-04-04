@@ -5,6 +5,7 @@ import LowerMenu from '../components/LowerMenu';
 import getListOfFoodByIngredients from '../services/getListOfFoodByIngredients';
 import getFoodByIngredient from '../services/getFoodByIngredient';
 import { MyContext } from '../context/Provider';
+import Header from '../components/Header';
 
 function FoodIngredients() {
   const [foodIngredientsList, setFoodIngredientsList] = useState([]);
@@ -34,6 +35,7 @@ function FoodIngredients() {
   return (
     <div>
       <h2>Food Ingredients</h2>
+      <Header />
       {foodIngredientsList.map(
         (ingredient, index) => (
           <CardIngredient

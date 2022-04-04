@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import CardIngredient from '../components/CardIngredient';
+import Header from '../components/Header';
 import LowerMenu from '../components/LowerMenu';
 import { MyContext } from '../context/Provider';
 import getDrinkByIngredient from '../services/getDrinkByIngredient';
@@ -34,6 +35,7 @@ function DrinkIngredients() {
   return (
     <div>
       <h2>Drink Ingredients</h2>
+      <Header />
       {drinkIngredientsList.map(
         (ingredient, index) => (
           <CardIngredient

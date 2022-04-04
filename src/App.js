@@ -20,7 +20,6 @@ import ExploreFoods from './pages/ExploreFoods';
 function App() {
   return (
     <Provider>
-      <h1>App</h1>
       <Router>
         <Switch>
           <Route exact path="/" component={ Login } />

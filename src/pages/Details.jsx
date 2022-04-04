@@ -18,6 +18,10 @@ function Details() {
   const [youtubeCode, setYoutubeCode] = useState('');
   const [category, setCategory] = useState('');
 
+  const localStorageCheck = () => {
+    if (!localStorage.doneRecipes) localStorage.doneRecipes = '[]';
+  };
+
   useEffect(() => {
     const fetchDetails = async () => {
       if (type === 'Meal') {
@@ -33,6 +37,7 @@ function Details() {
         setCategory(arrayList[0].strAlcoholic);
       }
     };
+    localStorageCheck();
     fetchDetails();
   }, [id, type]);
 
