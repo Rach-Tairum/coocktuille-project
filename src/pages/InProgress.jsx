@@ -5,6 +5,7 @@ import getDrinkRecipe from '../services/getDrinkRecipe';
 import Ingredients from '../components/Ingredients';
 import Recommendations from '../components/Recommendations';
 import '../Details.css';
+import FavoriteBtn from '../components/FavoriteBtn';
 
 const statusCheck = (id, status, setStatus) => {
   const keys = ['done', 'favorite', 'inProgress'];
@@ -72,12 +73,11 @@ function InProgress() {
       >
         Share
       </button>
-      <button
-        data-testid="favorite-btn"
-        type="button"
-      >
-        Favorite
-      </button>
+      <FavoriteBtn
+        id={ id }
+        type={ type }
+        details={ details }
+      />
       <Ingredients
         details={ details }
         type={ type }
