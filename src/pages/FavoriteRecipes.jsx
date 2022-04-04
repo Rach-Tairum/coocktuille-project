@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import copy from 'clipboard-copy';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
@@ -74,13 +75,17 @@ function FavoriteRecipes() {
 
       { filterRecipes.map((favoriteItem, index) => (
         <div key={ favoriteItem.id }>
-          <img
-            data-testid={ `${index}-horizontal-image` }
-            src={ favoriteItem.image }
-            alt="imagem do item favoritado"
-            width="100"
-          />
-          <p data-testid={ `${index}-horizontal-name` }>{ favoriteItem.name }</p>
+          <Link to={ `/${favoriteItem.type}s/${favoriteItem.id}` }>
+            <img
+              data-testid={ `${index}-horizontal-image` }
+              src={ favoriteItem.image }
+              alt="imagem do item favoritado"
+              width="100"
+            />
+          </Link>
+          <Link to={ `/${favoriteItem.type}s/${favoriteItem.id}` }>
+            <p data-testid={ `${index}-horizontal-name` }>{ favoriteItem.name }</p>
+          </Link>
           <p>{ favoriteItem.category }</p>
           { favoriteItem.nationality === ''
             ? (
