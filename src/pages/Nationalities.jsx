@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 import Card from '../components/Card';
 import LowerMenu from '../components/LowerMenu';
 import { MyContext } from '../context/Provider';
@@ -56,6 +57,7 @@ function Nationalities() {
   return (
     <div>
       <h2>Nationalities</h2>
+      <Header />
       <select data-testid="explore-by-nationality-dropdown" onChange={ selectCountry }>
         {nationalites.map(
           (country, index) => (
