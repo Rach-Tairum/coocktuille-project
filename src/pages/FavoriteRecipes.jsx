@@ -15,6 +15,14 @@ function FavoriteRecipes() {
 
   // a foto da receita, o nome, a categoria, a nacionalidade
 
+  const removeItem = ({ target }) => {
+    const { id } = target;
+    const removeItens = favoriteRecipesList.filter((item) => item.id !== id);
+    setFavoriteRecipesList(removeItens);
+    const recipesLocal = JSON.stringify(removeItens);
+    localStorage.setItem('favoriteRecipes', recipesLocal);
+  };
+
   return (
     <div>
       <h2>FavoriteRecipes</h2>
@@ -85,8 +93,14 @@ function FavoriteRecipes() {
             type="button"
             data-testid={ `${index}-horizontal-favorite-btn` }
             src={ blackHeartIcon }
+            onClick={ removeItem }
+            id={ favoriteItem.id }
           >
-            <img src={ blackHeartIcon } alt=" ícone de favoritar e desfavoritar item" />
+            <img
+              id={ favoriteItem.id }
+              src={ blackHeartIcon }
+              alt=" ícone de favoritar e desfavoritar item"
+            />
           </button>
 
         </div>
