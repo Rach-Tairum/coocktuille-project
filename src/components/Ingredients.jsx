@@ -147,8 +147,6 @@ function Ingredients({ details, type, inProgress, id }) {
   const finishRecipe = () => {
     let tagsOk = [];
 
-    console.log('entrei na função');
-
     if (details.strTags !== null) {
       tagsOk = details.strTags.split(', ');
     }
