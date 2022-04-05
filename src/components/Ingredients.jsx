@@ -35,11 +35,11 @@ function Ingredients({ details, type, inProgress, id }) {
       let ingredientsList = [];
       if (type === 'Meal') ingredientsList = recipesObj.meals[`${id}`];
       if (type === 'Drink') ingredientsList = recipesObj.cocktails[`${id}`];
-      console.log(ingredientsList.length);
-      console.log(ingredients.length);
-      if (ingredientsList.length === ingredients.length) {
-        setIsDisabled(false);
-      } else setIsDisabled(true);
+      if (ingredientsList !== undefined) {
+        if (ingredientsList.length === ingredients.length) {
+          setIsDisabled(false);
+        } else setIsDisabled(true);
+      }
     }
   };
 
@@ -51,15 +51,6 @@ function Ingredients({ details, type, inProgress, id }) {
     };
     if (!localStorage.inProgressRecipes) {
       localStorage.inProgressRecipes = JSON.stringify(inProgressObj);
-
-      const recipesObj = JSON.parse(localStorage.inProgressRecipes);
-      if (type === 'Meal') {
-        recipesObj.meals[`${id}`] = [];
-        localStorage.inProgressRecipes = JSON.stringify(recipesObj);
-      } else {
-        recipesObj.cocktails[`${id}`] = [];
-        localStorage.inProgressRecipes = JSON.stringify(recipesObj);
-      }
     }
   };
 
@@ -86,11 +77,12 @@ function Ingredients({ details, type, inProgress, id }) {
       if (type === 'Drink') ingredientsList = recipesObj.cocktails[`${id}`];
 
       const newCheckbox = checkbox;
-
-      ingredientsList.forEach((num) => {
-        newCheckbox[`${num}`] = true;
-        setCheckbox(newCheckbox);
-      });
+      if (ingredientsList !== undefined) {
+        ingredientsList.forEach((num) => {
+          newCheckbox[`${num}`] = true;
+          setCheckbox(newCheckbox);
+        });
+      }
     };
     getCheckbox();
   }, [details, type, id, checkbox, setCheckbox]);
@@ -98,9 +90,15 @@ function Ingredients({ details, type, inProgress, id }) {
   const inProgressCheck = (index) => {
     startRecipe();
     const recipesObj = JSON.parse(localStorage.inProgressRecipes);
+
     let ingredientsList = [];
-    if (type === 'Meal') ingredientsList = recipesObj.meals[`${id}`];
-    if (type === 'Drink') ingredientsList = recipesObj.cocktails[`${id}`];
+    if (type === 'Meal') {
+      if (recipesObj.meals[`${id}`] === undefined) recipesObj.meals[`${id}`] = [];
+      ingredientsList = recipesObj.meals[`${id}`];
+    } else {
+      if (recipesObj.cocktails[`${id}`] === undefined) recipesObj.cocktails[`${id}`] = [];
+      ingredientsList = recipesObj.cocktails[`${id}`];
+    }
 
     const newCheckbox = checkbox;
     newCheckbox[`${index}`] = !newCheckbox[`${index}`];
@@ -136,7 +134,7 @@ function Ingredients({ details, type, inProgress, id }) {
 
   useEffect(() => {
     checkFinish();
-  }, [ingredients, checkbox, inProgressCheck]);
+  }, [ingredients, checkbox]);
 
   return (
     <div>
