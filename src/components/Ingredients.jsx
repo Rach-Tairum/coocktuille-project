@@ -1,9 +1,58 @@
 import React, { useState, useEffect } from 'react';
 import { object, string, bool } from 'prop-types';
+import { Link } from 'react-router-dom';
 
-function Ingredients({ details, type, inProgress }) {
+function Ingredients({ details, type, inProgress, id }) {
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [checkbox, setCheckbox] = useState({
+    0: false,
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+    7: false,
+    8: false,
+    9: false,
+    10: false,
+    11: false,
+    12: false,
+    13: false,
+    14: false,
+    15: false,
+    16: false,
+    17: false,
+    18: false,
+    19: false,
+  });
+
+  const checkFinish = () => {
+    if (ingredients.length) {
+      const recipesObj = JSON.parse(localStorage.inProgressRecipes);
+      let ingredientsList = [];
+      if (type === 'Meal') ingredientsList = recipesObj.meals[`${id}`];
+      if (type === 'Drink') ingredientsList = recipesObj.cocktails[`${id}`];
+      if (ingredientsList !== undefined) {
+        if (ingredientsList.length === ingredients.length) {
+          setIsDisabled(false);
+        } else setIsDisabled(true);
+      }
+    }
+  };
+
+  // Feito apenas por conta do teste! Ele apagava o localStorage criado anteriormente!
+  const startRecipe = () => {
+    const inProgressObj = {
+      cocktails: {},
+      meals: {},
+    };
+    if (!localStorage.inProgressRecipes) {
+      localStorage.inProgressRecipes = JSON.stringify(inProgressObj);
+    }
+  };
 
   useEffect(() => {
     const getIngredients = () => {
@@ -20,38 +69,116 @@ function Ingredients({ details, type, inProgress }) {
       setMeasures(measuresArray);
     };
     getIngredients();
-  }, [details, type]);
+    const getCheckbox = () => {
+      startRecipe();
+      const recipesObj = JSON.parse(localStorage.inProgressRecipes);
+      let ingredientsList = [];
+      if (type === 'Meal') ingredientsList = recipesObj.meals[`${id}`];
+      if (type === 'Drink') ingredientsList = recipesObj.cocktails[`${id}`];
+
+      const newCheckbox = checkbox;
+      if (ingredientsList !== undefined) {
+        ingredientsList.forEach((num) => {
+          newCheckbox[`${num}`] = true;
+          setCheckbox(newCheckbox);
+        });
+      }
+    };
+    getCheckbox();
+  }, [details, type, id, checkbox, setCheckbox]);
+
+  const inProgressCheck = (index) => {
+    startRecipe();
+    const recipesObj = JSON.parse(localStorage.inProgressRecipes);
+
+    let ingredientsList = [];
+    if (type === 'Meal') {
+      if (recipesObj.meals[`${id}`] === undefined) recipesObj.meals[`${id}`] = [];
+      ingredientsList = recipesObj.meals[`${id}`];
+    } else {
+      if (recipesObj.cocktails[`${id}`] === undefined) recipesObj.cocktails[`${id}`] = [];
+      ingredientsList = recipesObj.cocktails[`${id}`];
+    }
+
+    const newCheckbox = checkbox;
+    newCheckbox[`${index}`] = !newCheckbox[`${index}`];
+    setCheckbox(newCheckbox);
+
+    const found = ingredientsList.filter((num) => num === index);
+    if (type === 'Meal') {
+      if (!found.length) {
+        ingredientsList.push(index);
+        recipesObj.meals[`${id}`] = ingredientsList;
+        localStorage.inProgressRecipes = JSON.stringify(recipesObj);
+      } else {
+        const newIngredientsList = ingredientsList.filter((num) => num !== index);
+        recipesObj.meals[`${id}`] = newIngredientsList;
+        localStorage.inProgressRecipes = JSON.stringify(recipesObj);
+      }
+    }
+    if (type === 'Drink') {
+      if (!found.length) {
+        ingredientsList.push(index);
+        recipesObj.cocktails[`${id}`] = ingredientsList;
+        localStorage.inProgressRecipes = JSON.stringify(recipesObj);
+      } else {
+        const newIngredientsList = ingredientsList.filter((num) => num !== index);
+        recipesObj.cocktails[`${id}`] = newIngredientsList;
+        localStorage.inProgressRecipes = JSON.stringify(recipesObj);
+      }
+    }
+    checkFinish();
+  };
+
+  const isChecked = (index) => checkbox[`${index}`];
+
+  useEffect(() => {
+    checkFinish();
+  }, [ingredients, checkbox]);
 
   return (
-    <ul>
-      {!inProgress && ingredients.map((ingredient, index) => (
-        <li
-          data-testid={ `${index}-ingredient-name-and-measure` }
-          key={ index }
-        >
-          {`${measures[index]} ${ingredient}`}
-        </li>
-      ))}
-      {inProgress && ingredients.map((ingredient, index) => (
-        <li
-          data-testid={ `${index}-ingredient-step` }
-          key={ index }
-        >
-          <input
-            type="checkbox"
-            id={ `${ingredient}` }
-            name={ `${ingredient}` }
-            value={ index }
-          />
-          <label
-            htmlFor={ `${ingredient}` }
+    <div>
+      <ul>
+        {!inProgress && ingredients.map((ingredient, index) => (
+          <li
+            data-testid={ `${index}-ingredient-name-and-measure` }
+            key={ index }
           >
             {`${measures[index]} ${ingredient}`}
+          </li>
+        ))}
+        {inProgress && ingredients.map((ingredient, index) => (
+          <li
+            data-testid={ `${index}-ingredient-step` }
+            key={ index }
+          >
+            <input
+              type="checkbox"
+              id={ `${ingredient}` }
+              name={ `${ingredient}` }
+              checked={ isChecked(index) }
+              onChange={ () => inProgressCheck(index) }
+            />
+            <label
+              htmlFor={ `${ingredient}` }
+            >
+              {`${measures[index]} ${ingredient}`}
+            </label>
+          </li>
 
-          </label>
-        </li>
-      ))}
-    </ul>
+        ))}
+      </ul>
+      <Link to="/done-recipes">
+        <button
+          className="fixed-btn"
+          data-testid="finish-recipe-btn"
+          type="button"
+          disabled={ isDisabled }
+        >
+          Finish
+        </button>
+      </Link>
+    </div>
   );
 }
 
@@ -60,4 +187,5 @@ Ingredients.propTypes = {
   details: object,
   type: string,
   inProgress: bool,
+  id: string,
 }.isRequired;
