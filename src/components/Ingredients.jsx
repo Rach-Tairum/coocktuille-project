@@ -136,6 +136,57 @@ function Ingredients({ details, type, inProgress, id }) {
     checkFinish();
   }, [ingredients, checkbox]);
 
+  const getAtualDate = () => {
+    const data = new Date();
+    const dia = String(data.getDate()).padStart(2, '0');
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const ano = data.getFullYear();
+    return `${dia}/${mes}/${ano}`;
+  };
+
+  const finishRecipe = () => {
+    let tagsOk = [];
+
+    console.log('entrei na função');
+
+    if (details.strTags !== null) {
+      tagsOk = details.strTags.split(', ');
+    }
+    const local = JSON.parse(localStorage.getItem('doneRecipes'));
+
+    if (type === 'Meal') {
+      const obj = {
+        id,
+        type: 'food',
+        nationality: details.strArea,
+        category: details.strCategory,
+        alcoholicOrNot: '',
+        name: details.strMeal,
+        image: details.strMealThumb,
+        doneDate: getAtualDate(),
+        tags: tagsOk,
+      };
+      const newArr = [...local, obj];
+      localStorage.setItem('doneRecipes', JSON.stringify(newArr));
+    }
+
+    if (type === 'Drink') {
+      const obj = {
+        id,
+        type: 'drink',
+        nationality: '',
+        category: details.strCategory,
+        alcoholicOrNot: details.strAlcoholic,
+        name: details.strDrink,
+        image: details.strDrinkThumb,
+        doneDate: getAtualDate(),
+        tags: tagsOk,
+      };
+      const newArr = [...local, obj];
+      localStorage.setItem('doneRecipes', JSON.stringify(newArr));
+    }
+  };
+
   return (
     <div>
       <ul>
@@ -174,6 +225,7 @@ function Ingredients({ details, type, inProgress, id }) {
           data-testid="finish-recipe-btn"
           type="button"
           disabled={ isDisabled }
+          onClick={ finishRecipe }
         >
           Finish
         </button>
