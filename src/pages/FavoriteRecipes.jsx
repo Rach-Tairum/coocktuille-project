@@ -11,8 +11,10 @@ function FavoriteRecipes() {
   const [filterRecipes, setFilterRecipes] = useState([]);
 
   useEffect(() => {
-    setFilterRecipes(JSON.parse(localStorage.favoriteRecipes));
-    setFavoriteRecipesList(JSON.parse(localStorage.favoriteRecipes));
+    const getLocal = localStorage.getItem('favoriteRecipes');
+    console.log(getLocal);
+    setFilterRecipes(JSON.parse(getLocal));
+    setFavoriteRecipesList(JSON.parse(getLocal));
   }, []);
 
   const favoritesFoods = () => {
@@ -73,7 +75,7 @@ function FavoriteRecipes() {
         Drinks
       </button>
 
-      { filterRecipes.map((favoriteItem, index) => (
+      { filterRecipes && filterRecipes.map((favoriteItem, index) => (
         <div key={ favoriteItem.id }>
           <Link to={ `/${favoriteItem.type}s/${favoriteItem.id}` }>
             <img
