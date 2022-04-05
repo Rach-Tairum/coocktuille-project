@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { object, string, bool } from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function Ingredients({ details, type, inProgress, id }) {
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
+  const [isDisabled, setIsDisabled] = useState(true);
   const [checkbox, setCheckbox] = useState({
     0: false,
     1: false,
@@ -26,6 +28,20 @@ function Ingredients({ details, type, inProgress, id }) {
     18: false,
     19: false,
   });
+
+  const checkFinish = () => {
+    if (ingredients.length) {
+      const recipesObj = JSON.parse(localStorage.inProgressRecipes);
+      let ingredientsList = [];
+      if (type === 'Meal') ingredientsList = recipesObj.meals[`${id}`];
+      if (type === 'Drink') ingredientsList = recipesObj.cocktails[`${id}`];
+      console.log(ingredientsList.length);
+      console.log(ingredients.length);
+      if (ingredientsList.length === ingredients.length) {
+        setIsDisabled(false);
+      } else setIsDisabled(true);
+    }
+  };
 
   // Feito apenas por conta do teste! Ele apagava o localStorage criado anteriormente!
   const startRecipe = () => {
@@ -77,7 +93,7 @@ function Ingredients({ details, type, inProgress, id }) {
       });
     };
     getCheckbox();
-  }, [details, type, id, checkbox]);
+  }, [details, type, id, checkbox, setCheckbox]);
 
   const inProgressCheck = (index) => {
     startRecipe();
@@ -113,40 +129,58 @@ function Ingredients({ details, type, inProgress, id }) {
         localStorage.inProgressRecipes = JSON.stringify(recipesObj);
       }
     }
+    checkFinish();
   };
 
   const isChecked = (index) => checkbox[`${index}`];
 
+  useEffect(() => {
+    checkFinish();
+  }, [ingredients, checkbox, inProgressCheck]);
+
   return (
-    <ul>
-      {!inProgress && ingredients.map((ingredient, index) => (
-        <li
-          data-testid={ `${index}-ingredient-name-and-measure` }
-          key={ index }
-        >
-          {`${measures[index]} ${ingredient}`}
-        </li>
-      ))}
-      {inProgress && ingredients.map((ingredient, index) => (
-        <li
-          data-testid={ `${index}-ingredient-step` }
-          key={ index }
-        >
-          <input
-            type="checkbox"
-            id={ `${ingredient}` }
-            name={ `${ingredient}` }
-            checked={ isChecked(index) }
-            onChange={ () => inProgressCheck(index) }
-          />
-          <label
-            htmlFor={ `${ingredient}` }
+    <div>
+      <ul>
+        {!inProgress && ingredients.map((ingredient, index) => (
+          <li
+            data-testid={ `${index}-ingredient-name-and-measure` }
+            key={ index }
           >
             {`${measures[index]} ${ingredient}`}
-          </label>
-        </li>
-      ))}
-    </ul>
+          </li>
+        ))}
+        {inProgress && ingredients.map((ingredient, index) => (
+          <li
+            data-testid={ `${index}-ingredient-step` }
+            key={ index }
+          >
+            <input
+              type="checkbox"
+              id={ `${ingredient}` }
+              name={ `${ingredient}` }
+              checked={ isChecked(index) }
+              onChange={ () => inProgressCheck(index) }
+            />
+            <label
+              htmlFor={ `${ingredient}` }
+            >
+              {`${measures[index]} ${ingredient}`}
+            </label>
+          </li>
+
+        ))}
+      </ul>
+      <Link to="/done-recipes">
+        <button
+          className="fixed-btn"
+          data-testid="finish-recipe-btn"
+          type="button"
+          disabled={ isDisabled }
+        >
+          Finish
+        </button>
+      </Link>
+    </div>
   );
 }
 

@@ -124,13 +124,13 @@ function InProgress() {
       <Recommendations
         type={ type }
       />
-      <button
+      {/* <button
         className="fixed-btn"
         data-testid="finish-recipe-btn"
         type="button"
       >
         Finish
-      </button>
+      </button> */}
     </div>
   );
 }
