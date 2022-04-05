@@ -110,6 +110,7 @@ function InProgress() {
         details={ details }
         type={ type }
         inProgress
+        id={ id }
       />
       <p data-testid="instructions">{ details.strInstructions }</p>
       {youtubeCode && <iframe

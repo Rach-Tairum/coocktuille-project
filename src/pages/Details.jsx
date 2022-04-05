@@ -112,6 +112,7 @@ function Details() {
         details={ details }
         type={ type }
         inProgress={ false }
+        id={ id }
       />
       <p data-testid="instructions">{ details.strInstructions }</p>
       {youtubeCode && <iframe
