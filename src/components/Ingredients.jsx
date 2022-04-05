@@ -27,6 +27,26 @@ function Ingredients({ details, type, inProgress, id }) {
     19: false,
   });
 
+  // Feito apenas por conta do teste! Ele apagava o localStorage criado anteriormente!
+  const startRecipe = () => {
+    const inProgressObj = {
+      cocktails: {},
+      meals: {},
+    };
+    if (!localStorage.inProgressRecipes) {
+      localStorage.inProgressRecipes = JSON.stringify(inProgressObj);
+
+      const recipesObj = JSON.parse(localStorage.inProgressRecipes);
+      if (type === 'Meal') {
+        recipesObj.meals[`${id}`] = [];
+        localStorage.inProgressRecipes = JSON.stringify(recipesObj);
+      } else {
+        recipesObj.cocktails[`${id}`] = [];
+        localStorage.inProgressRecipes = JSON.stringify(recipesObj);
+      }
+    }
+  };
+
   useEffect(() => {
     const getIngredients = () => {
       const sizesObj = { Meal: 20, Drink: 15 };
@@ -42,29 +62,43 @@ function Ingredients({ details, type, inProgress, id }) {
       setMeasures(measuresArray);
     };
     getIngredients();
-  }, [details, type]);
+    const getCheckbox = () => {
+      startRecipe();
+      const recipesObj = JSON.parse(localStorage.inProgressRecipes);
+      let ingredientsList = [];
+      if (type === 'Meal') ingredientsList = recipesObj.meals[`${id}`];
+      if (type === 'Drink') ingredientsList = recipesObj.cocktails[`${id}`];
 
-  const test = (index) => {
+      const newCheckbox = checkbox;
+
+      ingredientsList.forEach((num) => {
+        newCheckbox[`${num}`] = true;
+        setCheckbox(newCheckbox);
+      });
+    };
+    getCheckbox();
+  }, [details, type, id, checkbox]);
+
+  const inProgressCheck = (index) => {
+    startRecipe();
     const recipesObj = JSON.parse(localStorage.inProgressRecipes);
     let ingredientsList = [];
     if (type === 'Meal') ingredientsList = recipesObj.meals[`${id}`];
     if (type === 'Drink') ingredientsList = recipesObj.cocktails[`${id}`];
-    // console.log(ingredientsList);
+
     const newCheckbox = checkbox;
     newCheckbox[`${index}`] = !newCheckbox[`${index}`];
-    // console.log(newCheckbox);
     setCheckbox(newCheckbox);
+
     const found = ingredientsList.filter((num) => num === index);
     if (type === 'Meal') {
       if (!found.length) {
         ingredientsList.push(index);
         recipesObj.meals[`${id}`] = ingredientsList;
-        console.log(recipesObj);
         localStorage.inProgressRecipes = JSON.stringify(recipesObj);
       } else {
         const newIngredientsList = ingredientsList.filter((num) => num !== index);
         recipesObj.meals[`${id}`] = newIngredientsList;
-        console.log(recipesObj);
         localStorage.inProgressRecipes = JSON.stringify(recipesObj);
       }
     }
@@ -102,9 +136,8 @@ function Ingredients({ details, type, inProgress, id }) {
             type="checkbox"
             id={ `${ingredient}` }
             name={ `${ingredient}` }
-            value={ index }
-            checked={ isChecked() }
-            onChange={ () => test(index) }
+            checked={ isChecked(index) }
+            onChange={ () => inProgressCheck(index) }
           />
           <label
             htmlFor={ `${ingredient}` }
