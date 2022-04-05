@@ -3,18 +3,23 @@ import { Link } from 'react-router-dom';
 import copy from 'clipboard-copy';
 import Header from '../components/Header';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import heartIcon from '../images/whiteHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
+// import FavoriteBtn from '../components/FavoriteBtn';
 
 function DoneRecipes() {
   const [doneRecipesList, setDoneRecipesList] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [filterRecipes, setFilterRecipes] = useState([]);
+  const [getLocalFavorites, setLocalFavorites] = useState([]);
 
   useEffect(() => {
     const getLocal = localStorage.getItem('doneRecipes');
-    console.log(getLocal);
+    const getLocal2 = localStorage.getItem('favoriteRecipes');
+    console.log(getLocal2);
     setFilterRecipes(JSON.parse(getLocal));
     setDoneRecipesList(JSON.parse(getLocal));
+    setLocalFavorites(JSON.parse(getLocal2));
   }, []);
 
   const favoritesFoods = () => {
@@ -31,17 +36,64 @@ function DoneRecipes() {
     setFilterRecipes(favoriteListDrinks);
   };
 
-  const removeItem = ({ target }) => {
-    const { id } = target;
-    const removeItens = doneRecipesList.filter((item) => item.id !== id);
-    setDoneRecipesList(removeItens);
-    setFilterRecipes(removeItens);
-    const recipesLocal = JSON.stringify(removeItens);
-    localStorage.setItem('doneRecipes', recipesLocal);
-  };
-
   const favorites = () => {
     setFilterRecipes(doneRecipesList);
+  };
+
+  const removeRecipe = ({ target }) => {
+    const { id } = target;
+    const removeItens = getLocalFavorites.filter((item) => item.id !== id);
+    const recipesLocal = JSON.stringify(removeItens);
+    localStorage.setItem('favoriteRecipes', recipesLocal);
+    setLocalFavorites(removeItens);
+  };
+
+  // const favoriteRecipe = ({ target }) => {
+  //   const { id } = target;
+  //   const addRecipe = getLocalFavorites.filter((item) => item.id === id);
+  //   if (addRecipe.length === 0) {
+  //     const add = [...getLocalFavorites, ]
+  //   }
+  // };
+
+  const renderHearts = (idDone, index) => {
+    if (getLocalFavorites !== null) {
+      const arrHeart = getLocalFavorites.filter((favorite) => favorite.id === idDone);
+
+      if (arrHeart.length !== 0) {
+        return (
+          <button
+            type="button"
+            data-testid={ `${index}-horizontal-favorite-btn` }
+            src={ blackHeartIcon }
+            onClick={ removeRecipe }
+            id={ idDone }
+          >
+            <img
+              id={ idDone }
+              src={ blackHeartIcon }
+              alt=" ícone de favoritar e desfavoritar item"
+            />
+          </button>
+        );
+      }
+      return (
+        <button
+          key={ idDone }
+          type="button"
+          data-testid={ `${index}-horizontal-favorite-btn` }
+          src={ heartIcon }
+          // onClick={ favoriteRecipe }
+          id={ idDone }
+        >
+          <img
+            id={ idDone }
+            src={ heartIcon }
+            alt=" ícone de favoritar e desfavoritar item"
+          />
+        </button>
+      );
+    }
   };
 
   return (
@@ -81,7 +133,10 @@ function DoneRecipes() {
               width="100"
             />
           </Link>
-          <Link to={ `/${favoriteItem.type}s/${favoriteItem.id}` }>
+          <Link
+            key={ favoriteItem.id }
+            to={ `/${favoriteItem.type}s/${favoriteItem.id}` }
+          >
             <p data-testid={ `${index}-horizontal-name` }>{ favoriteItem.name }</p>
           </Link>
           <p>{ favoriteItem.category }</p>
@@ -120,20 +175,8 @@ function DoneRecipes() {
               : <img src={ shareIcon } alt="ícone de compartilhar" />}
           </button>
 
-          <button
-            type="button"
-            data-testid={ `${index}-horizontal-favorite-btn` }
-            src={ blackHeartIcon }
-            onClick={ removeItem }
-            id={ favoriteItem.id }
-          >
-            <img
-              id={ favoriteItem.id }
-              src={ blackHeartIcon }
-              alt=" ícone de favoritar e desfavoritar item"
-            />
-          </button>
-
+          {renderHearts(favoriteItem.id, index)}
+          {/* <FavoriteBtn id={ favoriteItem.id } type={ favoriteItem.type } /> */}
         </div>
       )) }
     </>
