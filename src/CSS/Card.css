@@ -1,0 +1,19 @@
+.card-item {
+  background-color: rgba(240, 255, 255, 0.735);
+  border-radius: 20px;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+}
+
+.card-item-p {
+  color: rgb(155, 6, 6);
+  font-family: Sawarabi Mincho , sans-serif;
+  font-size: 15pt;
+  font-style: none;
+  text-decoration: underline white;
+}
+
+.card-item img {
+  border-radius: 20px;
+}

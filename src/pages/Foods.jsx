@@ -7,6 +7,7 @@ import { MyContext } from '../context/Provider';
 import getFoodCategories from '../services/getFoodCategories';
 import getFoodsByCategory from '../services/getFoodsByCategory';
 import getListFoods from '../services/getListFoods';
+import '../CSS/Foods.css';
 
 const maxRecipesIngredients = (recipes, maxLengthList, setFoodList) => {
   if (recipes.length > maxLengthList) {
@@ -81,11 +82,12 @@ function Foods() {
   return (
     <div>
       <Header />
-      <div>
+      <div className="div-buttons">
         <button
           data-testid="All-category-filter"
           type="button"
           onClick={ resetFilters }
+          className="filter-buttons"
         >
           All
         </button>
@@ -95,14 +97,17 @@ function Foods() {
             key={ index }
             type="button"
             onClick={ () => getRecipes(category.strCategory, index) }
+            className="filter-buttons"
           >
             { category.strCategory }
           </button>
         ))}
       </div>
       {foodList.length === 1 && <Redirect to={ `/foods/${foodList[0].idMeal}` } />}
-      {foodList.length > 1
-      && toggleCategory && recipesByCategory.map((meal, index) => (
+      <div className="foods-cards">
+        {foodList.length > 1
+      && toggleCategory
+      && recipesByCategory.map((meal, index) => (
         <Link to={ `/foods/${meal.idMeal}` } key={ `${index}-recipesByCategory` }>
           <Card
             name={ meal.strMeal }
@@ -111,8 +116,9 @@ function Foods() {
           />
         </Link>
       ))}
-      {foodList.length > 1
-      && !toggleCategory && foodList.map((meal, index) => (
+        {foodList.length > 1
+      && !toggleCategory
+      && foodList.map((meal, index) => (
         <Link to={ `/foods/${meal.idMeal}` } key={ `${index}-foodList` }>
           <Card
             name={ meal.strMeal }
@@ -121,6 +127,7 @@ function Foods() {
           />
         </Link>
       ))}
+      </div>
       <LowerMenu />
     </div>
   );
