@@ -1,0 +1,35 @@
+.search-all {
+  align-items: center;
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+}
+
+.search-all-2 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-label {
+  font-family: Sawarabi Mincho , sans-serif;
+  font-size: 14pt;
+}
+
+.login-input {
+  border-radius: 8px;
+  padding: 5px 20px;
+}
+
+.button-search {
+  background-color: rgb(163, 255, 224);
+  border-radius: 10px;
+  box-shadow: 5px 2px 5px 2px rgba(0, 0, 0, 0.631);
+  padding: 10px;
+  font-size: 12pt;
+  font-weight: 200;
+}
+
+.radio-search {
+  transform: scale(1.3);
+}

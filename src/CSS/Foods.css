@@ -35,7 +35,6 @@
 }
 
 .foods-cards {
-  /* backdrop-filter: blur(30px); */
   display: flex;
   flex-wrap: wrap;
   margin: 5px;

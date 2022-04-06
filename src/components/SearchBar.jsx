@@ -7,6 +7,7 @@ import getDrinkByName from '../services/getDrinkByName';
 import getFoodByFirstLetter from '../services/getFoodByFirstLetter';
 import getFoodByIngredient from '../services/getFoodByIngredient';
 import getFoodByName from '../services/getFoodByName';
+import '../CSS/SearchBar.css';
 
 function SearchBar() {
   const history = useHistory();
@@ -68,48 +69,53 @@ function SearchBar() {
   };
 
   return (
-    <div>
-      <label htmlFor="searchInput">
+    <div className="search-all">
+      <label htmlFor="searchInput" className="login-label">
         Search:
         <input
           data-testid="search-input"
           id="searchInput"
           type="text"
+          className="login-input"
         />
       </label>
-      <section>
 
-        <label htmlFor="ingredientRadio">
+      <section className="search-all-2">
+        <label htmlFor="ingredientRadio" className="login-label">
           Ingredient
           <input
             data-testid="ingredient-search-radio"
             id="ingredientRadio"
             name="search"
             type="radio"
+            className="radio-search"
           />
         </label>
-        <label htmlFor="nameRadio">
+        <label htmlFor="nameRadio" className="login-label">
           Name
           <input
             data-testid="name-search-radio"
             id="nameRadio"
             name="search"
             type="radio"
+            className="radio-search"
           />
         </label>
-        <label htmlFor="firstRadio">
+        <label htmlFor="firstRadio" className="login-label">
           First Letter
           <input
             data-testid="first-letter-search-radio"
             id="firstRadio"
             name="search"
             type="radio"
+            className="radio-search"
           />
         </label>
         <button
           data-testid="exec-search-btn"
           type="button"
           onClick={ submitSearch }
+          className="button-search"
         >
           Search
         </button>

@@ -10,13 +10,23 @@
 }
 
 .profile-path {
-  background-color: #ae9292;
+  background-color: white;
   border-radius: 20px;
   box-shadow: 5px 2px 5px 2px rgba(0, 0, 0, 0.439);
-  margin: 10px;
+  margin: 15px 300px;
   padding: 10px;
 }
 
 .profile-path:hover {
   background-color: wheat;
+}
+
+.search-path {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 5px 2px 5px 2px rgba(0, 0, 0, 0.439);
+  height: 45px;
+  margin: 10px;
+  padding: 10px;
+  width: 45px;
 }

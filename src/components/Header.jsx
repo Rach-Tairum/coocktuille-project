@@ -52,6 +52,7 @@ function Header() {
           src={ profileIcon }
           alt="Profile"
           className="profile-path"
+          width="20"
         />
       </Link>
       <h3 data-testid="page-title" className="foods-title">{title}</h3>
@@ -62,10 +63,12 @@ function Header() {
           data-testid="search-top-btn"
           onClick={ toggleBar }
           src={ searchIcon }
+          className="search-path"
         >
           <img
             src={ searchIcon }
             alt="Profile"
+            width="20"
           />
         </button>)}
       { searchBar && <SearchBar /> }
