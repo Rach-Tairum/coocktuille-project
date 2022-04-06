@@ -8,6 +8,7 @@ import '../Details.css';
 import StartRecipeBtn from '../components/StartRecipeBtn';
 import FavoriteBtn from '../components/FavoriteBtn';
 import ContinueBtn from '../components/ContinueBtn';
+import ShareBtn from '../components/ShareBtn';
 
 const inProgressStatus = (id, idList, status, setStatus) => {
   const newStatus = status;
@@ -97,16 +98,11 @@ function Details() {
       />
       <h2 data-testid="recipe-title">{ details[`str${type}`] }</h2>
       <h4 data-testid="recipe-category">{ category }</h4>
-      <button
-        data-testid="share-btn"
-        type="button"
-      >
-        Share
-      </button>
       <FavoriteBtn
         id={ id }
         type={ type }
       />
+      <ShareBtn />
       <Ingredients
         details={ details }
         type={ type }

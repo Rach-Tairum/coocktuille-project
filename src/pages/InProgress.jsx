@@ -6,6 +6,7 @@ import Ingredients from '../components/Ingredients';
 import Recommendations from '../components/Recommendations';
 import '../Details.css';
 import FavoriteBtn from '../components/FavoriteBtn';
+import ShareBtn from '../components/ShareBtn';
 
 // const inProgressCheck = (id, type, status, setStatus) => {
 //   const newStatus = status;
@@ -95,17 +96,12 @@ function InProgress() {
       />
       <h2 data-testid="recipe-title">{ details[`str${type}`] }</h2>
       <h4 data-testid="recipe-category">{ category }</h4>
-      <button
-        data-testid="share-btn"
-        type="button"
-      >
-        Share
-      </button>
       <FavoriteBtn
         id={ id }
         type={ type }
         details={ details }
       />
+      <ShareBtn />
       <Ingredients
         details={ details }
         type={ type }
