@@ -80,26 +80,26 @@ function Foods() {
 
   return (
     <div>
-      <h2>Foods</h2>
       <Header />
-      <button
-        data-testid="All-category-filter"
-        type="button"
-        onClick={ resetFilters }
-      >
-        All
-      </button>
-      { foodCategories.length && foodCategories.map((category, index) => (
+      <div>
         <button
-          data-testid={ `${category.strCategory}-category-filter` }
-          key={ index }
+          data-testid="All-category-filter"
           type="button"
-          onClick={ () => getRecipes(category.strCategory, index) }
+          onClick={ resetFilters }
         >
-          { category.strCategory }
+          All
         </button>
-      ))}
-
+        { foodCategories.length && foodCategories.map((category, index) => (
+          <button
+            data-testid={ `${category.strCategory}-category-filter` }
+            key={ index }
+            type="button"
+            onClick={ () => getRecipes(category.strCategory, index) }
+          >
+            { category.strCategory }
+          </button>
+        ))}
+      </div>
       {foodList.length === 1 && <Redirect to={ `/foods/${foodList[0].idMeal}` } />}
       {foodList.length > 1
       && toggleCategory && recipesByCategory.map((meal, index) => (

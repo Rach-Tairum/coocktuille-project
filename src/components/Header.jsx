@@ -5,6 +5,7 @@ import { useHistory } from 'react-router';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
+import '../CSS/Header.css';
 
 function Header() {
   const [searchBar, setSearchBar] = useState(false);
@@ -50,9 +51,10 @@ function Header() {
           data-testid="profile-top-btn"
           src={ profileIcon }
           alt="Profile"
+          className="profile-path"
         />
       </Link>
-      <h3 data-testid="page-title">{title}</h3>
+      <h3 data-testid="page-title" className="foods-title">{title}</h3>
       { hasSearchButton
       && (
         <button
