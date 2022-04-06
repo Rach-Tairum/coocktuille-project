@@ -18,7 +18,7 @@ function ShareBtn({ id, type }) {
   const copyLink = () => {
     const actualPath = history.location.pathname;
     let path = '';
-    if (actualPath === '/favorite-recipes') {
+    if (actualPath === '/favorite-recipes' || actualPath === '/done-recipes') {
       path = `http://localhost:3000/${type}s/${id}`;
       copy(path);
       setCopied(true);

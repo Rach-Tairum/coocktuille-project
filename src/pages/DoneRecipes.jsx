@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import copy from 'clipboard-copy';
 import Header from '../components/Header';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import heartIcon from '../images/whiteHeartIcon.svg';
-import shareIcon from '../images/shareIcon.svg';
-// import FavoriteBtn from '../components/FavoriteBtn';
+import ShareBtn from '../components/ShareBtn';
 
 function DoneRecipes() {
   const [doneRecipesList, setDoneRecipesList] = useState([]);
-  const [toggle, setToggle] = useState(false);
   const [filterRecipes, setFilterRecipes] = useState([]);
   const [getLocalFavorites, setLocalFavorites] = useState([]);
 
   useEffect(() => {
     const getLocal = localStorage.getItem('doneRecipes');
     const getLocal2 = localStorage.getItem('favoriteRecipes');
-    console.log(getLocal2);
+
     setFilterRecipes(JSON.parse(getLocal));
     setDoneRecipesList(JSON.parse(getLocal));
     setLocalFavorites(JSON.parse(getLocal2));
@@ -48,13 +45,29 @@ function DoneRecipes() {
     setLocalFavorites(removeItens);
   };
 
-  // const favoriteRecipe = ({ target }) => {
-  //   const { id } = target;
-  //   const addRecipe = getLocalFavorites.filter((item) => item.id === id);
-  //   if (addRecipe.length === 0) {
-  //     const add = [...getLocalFavorites, ]
-  //   }
-  // };
+  const favoriteRecipe = ({ target }) => {
+    const { id } = target;
+    const addRecipe = getLocalFavorites.filter((item) => item.id === id);
+    if (addRecipe.length === 0) {
+      const findRecipe = doneRecipesList.filter((recipe) => recipe.id === id);
+      const objRecipeFavorite = findRecipe.map((recipe) => {
+        const objFavorite = {
+          id: recipe.id,
+          type: recipe.type,
+          nationality: recipe.nationality,
+          category: recipe.category,
+          alcoholicOrNot: recipe.alcoholicOrNot,
+          name: recipe.name,
+          image: recipe.image,
+        };
+        return (objFavorite);
+      });
+      const add = [...getLocalFavorites, objRecipeFavorite[0]];
+      const recipesLocal = JSON.stringify(add);
+      localStorage.setItem('favoriteRecipes', recipesLocal);
+      setLocalFavorites(add);
+    }
+  };
 
   const renderHearts = (idDone, index) => {
     if (getLocalFavorites !== null) {
@@ -83,7 +96,7 @@ function DoneRecipes() {
           type="button"
           data-testid={ `${index}-horizontal-favorite-btn` }
           src={ heartIcon }
-          // onClick={ favoriteRecipe }
+          onClick={ favoriteRecipe }
           id={ idDone }
         >
           <img
@@ -133,10 +146,7 @@ function DoneRecipes() {
               width="100"
             />
           </Link>
-          <Link
-            key={ favoriteItem.id }
-            to={ `/${favoriteItem.type}s/${favoriteItem.id}` }
-          >
+          <Link to={ `/${favoriteItem.type}s/${favoriteItem.id}` }>
             <p data-testid={ `${index}-horizontal-name` }>{ favoriteItem.name }</p>
           </Link>
           <p>{ favoriteItem.category }</p>
@@ -161,22 +171,9 @@ function DoneRecipes() {
             </p>
           ))}
 
-          <button
-            data-testid={ `${index}-horizontal-share-btn` }
-            type="button"
-            src={ shareIcon }
-            onClick={ () => {
-              copy(`http://localhost:3000/${favoriteItem.type}s/${favoriteItem.id}`);
-              setToggle(!toggle);
-            } }
-          >
-
-            { toggle ? <p>Link copied!</p>
-              : <img src={ shareIcon } alt="ícone de compartilhar" />}
-          </button>
+          <ShareBtn id={ favoriteItem.id } type={ favoriteItem.type } />
 
           {renderHearts(favoriteItem.id, index)}
-          {/* <FavoriteBtn id={ favoriteItem.id } type={ favoriteItem.type } /> */}
         </div>
       )) }
     </>
