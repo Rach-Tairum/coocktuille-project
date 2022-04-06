@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../LowerMenu.css';
+import '../CSS/LowerMenu.css';
 import logoDrink from '../images/drinkIcon.svg';
 import logoMeal from '../images/mealIcon.svg';
 import logoExplore from '../images/exploreIcon.svg';
