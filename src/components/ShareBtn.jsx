@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import copy from 'clipboard-copy';
 import shareIcon from '../images/shareIcon.svg';
 
-function ShareBtn() {
+function ShareBtn({ id, type }) {
   const history = useHistory();
   const [copied, setCopied] = useState(false);
   const threeSeconds = 3000;
@@ -17,10 +17,18 @@ function ShareBtn() {
 
   const copyLink = () => {
     const actualPath = history.location.pathname;
-    const path = actualPath.replace('/in-progress', '');
-    copy(`http://localhost:3000${path}`);
-    setCopied(true);
-    showMessage();
+    let path = '';
+    if (actualPath === '/favorite-recipes') {
+      path = `http://localhost:3000/${type}s/${id}`;
+      copy(path);
+      setCopied(true);
+      showMessage();
+    } else {
+      path = actualPath.replace('/in-progress', '');
+      copy(`http://localhost:3000${path}`);
+      setCopied(true);
+      showMessage();
+    }
   };
 
   return (

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import copy from 'clipboard-copy';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import ShareBtn from '../components/ShareBtn';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
-import shareIcon from '../images/shareIcon.svg';
 
 function FavoriteRecipes() {
   const [favoriteRecipesList, setFavoriteRecipesList] = useState([]);
-  const [toggle, setToggle] = useState(false);
   const [filterRecipes, setFilterRecipes] = useState([]);
 
   useEffect(() => {
@@ -104,19 +102,7 @@ function FavoriteRecipes() {
 
               </p>) }
 
-          <button
-            data-testid={ `${index}-horizontal-share-btn` }
-            type="button"
-            src={ shareIcon }
-            onClick={ () => {
-              copy(`http://localhost:3000/${favoriteItem.type}s/${favoriteItem.id}`);
-              setToggle(!toggle);
-            } }
-          >
-
-            { toggle ? <p>Link copied!</p>
-              : <img src={ shareIcon } alt="ícone de compartilhar" />}
-          </button>
+          <ShareBtn id={ favoriteItem.id } type={ favoriteItem.type } />
 
           <button
             type="button"

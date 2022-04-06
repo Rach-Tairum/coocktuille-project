@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { shape } from 'prop-types';
+import '../CSS/Login.css';
 
 function Login({ history }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setDisabled] = useState(true);
+  const myRef = useRef(null);
+  const time = 4000;
+
+  useEffect(() => {
+    setTimeout(() => myRef.current.scrollIntoView({ behavior: 'smooth' }), time);
+  }, []);
 
   const inputValidation = () => {
     const validationArray = [];
@@ -40,39 +47,46 @@ function Login({ history }) {
   };
 
   return (
-    <>
-      <h2>Login</h2>
-      <label htmlFor="email">
-        Email:
-        <input
-          data-testid="email-input"
-          id="email"
-          name="email"
-          type="text"
-          onChange={ handleChange }
-          onKeyUp={ handleChange }
-        />
-      </label>
-      <label htmlFor="password">
-        Senha:
-        <input
-          data-testid="password-input"
-          id="password"
-          name="password"
-          type="password"
-          onChange={ handleChange }
-          onKeyUp={ handleChange }
-        />
-      </label>
-      <button
-        data-testid="login-submit-btn"
-        type="button"
-        disabled={ isDisabled }
-        onClick={ submit }
-      >
-        Login
-      </button>
-    </>
+    <div className="login-page">
+      <h1 className="login-title">CookTuille</h1>
+      <img className="gif" src="https://media.giphy.com/media/xKggUfdA60O6A/giphy.gif" alt="gif ratatuille" />
+      <div className="blur">
+        <h2 className="login-title2" ref={ myRef }>Login</h2>
+        <label htmlFor="email" className="login-label">
+          Email:
+          <input
+            data-testid="email-input"
+            id="email"
+            name="email"
+            type="text"
+            onChange={ handleChange }
+            onKeyUp={ handleChange }
+            className="login-input"
+          />
+        </label>
+        <label htmlFor="password" className="login-label">
+          Senha:
+          <input
+            data-testid="password-input"
+            id="password"
+            name="password"
+            type="password"
+            onChange={ handleChange }
+            onKeyUp={ handleChange }
+            className="login-input"
+          />
+        </label>
+        <button
+          data-testid="login-submit-btn"
+          type="button"
+          disabled={ isDisabled }
+          onClick={ submit }
+          className="btn"
+        >
+          Login
+        </button>
+      </div>
+    </div>
   );
 }
 

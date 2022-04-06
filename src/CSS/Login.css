@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Sawarabi+Mincho&display=swap') ;
+
+body {
+  background-image: url('https://images.unsplash.com/photo-1546535073-8c6ae0a98b5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80');
+}
+
+.blur {
+  align-items: center;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  margin-top: 130px;
+  padding-bottom: 200px;
+  padding-top: 200px;
+  text-align: center;
+  width: 100%;
+}
+
+.login-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  margin-top: 150px;
+  text-align: center;
+  width: 100%;
+}
+
+.gif {
+  margin-bottom: 40px;
+  width: 350px;
+}
+
+.login-title {
+  backdrop-filter: blur(10px);
+  color: brown;
+  font-family: Cookie , sans-serif;
+  font-size: 50pt;
+  font-weight: 200;
+  margin: 0;
+  padding: 20px;
+}
+
+.login-title2 {
+  font-family: Cookie , sans-serif;
+  font-size: 30pt;
+  font-weight: 200;
+  margin: 10px;
+}
+
+.login-label {
+  font-family: Sawarabi Mincho , sans-serif;
+  font-size: 15pt;
+}
+
+.login-input {
+  padding: 5px 20px;
+}
+
+#password {
+  margin-top: 20px;
+}
+
+/* From cssbuttons.io by @CristianMontoya98 */
+.btn {
+  background-image: linear-gradient(144deg, rgb(175, 64, 255), rgb(91, 66, 243) 50%, rgb(0, 221, 235));
+  border: none;
+  border-radius: 0.625em;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+  height: 2.3em;
+  margin: 0.5em;
+  overflow: hidden;
+  position: relative;
+  width: 6.5em;
+  z-index: 1;
+}
+
+.btn:hover {
+  color: white;
+}
+
+.btn:after {
+  background: black;
+  bottom: 0;
+  content: '';
+  left: -20%;
+  position: absolute;
+  right: -20%;
+  top: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+  z-index: -1;
+}
+
+.btn:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
