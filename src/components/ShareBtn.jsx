@@ -16,7 +16,8 @@ function ShareBtn() {
   };
 
   const copyLink = () => {
-    const path = history.location.pathname;
+    const actualPath = history.location.pathname;
+    const path = actualPath.replace('/in-progress', '');
     copy(`http://localhost:3000${path}`);
     setCopied(true);
     showMessage();
