@@ -2,12 +2,28 @@ import React, { useEffect, useState } from 'react';
 import { string, object } from 'prop-types';
 import emptyHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
+import getFoodRecipe from '../services/getFoodRecipe';
+import getDrinkRecipe from '../services/getDrinkRecipe';
 
-function FavoriteBtn({ id, type, details }) {
+function FavoriteBtn({ id, type }) {
   const [img, setImg] = useState(emptyHeart);
+  const [details, setDetails] = useState({});
+
+  useEffect(() => {
+    const fetchDetails = async () => {
+      if (type === 'Meal' || type === 'food') {
+        const arrayList = await getFoodRecipe(id);
+        setDetails(arrayList[0]);
+      } else {
+        const arrayList = await getDrinkRecipe(id);
+        setDetails(arrayList[0]);
+      }
+    };
+    fetchDetails();
+  });
 
   const favorite = () => {
-    if (type === 'Meal') {
+    if (type === 'Meal' || type === 'food') {
       const favoriteObj = {
         id,
         type: 'food',

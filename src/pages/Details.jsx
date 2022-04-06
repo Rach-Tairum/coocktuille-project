@@ -106,7 +106,6 @@ function Details() {
       <FavoriteBtn
         id={ id }
         type={ type }
-        details={ details }
       />
       <Ingredients
         details={ details }
