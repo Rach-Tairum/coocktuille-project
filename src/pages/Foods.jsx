@@ -80,7 +80,7 @@ function Foods() {
   };
 
   return (
-    <div>
+    <div className="foods-all">
       <Header />
       <div className="div-buttons">
         <button

@@ -13,8 +13,9 @@ function LowerMenu() {
           type="button"
           data-testid="drinks-bottom-btn"
           src={ logoDrink }
+          className="buttonMenu"
         >
-          <img src={ logoDrink } alt="imagem de um drinque" />
+          <img src={ logoDrink } alt="imagem de um drinque" className="image" />
         </button>
       </Link>
       <Link to="/explore">
@@ -22,8 +23,9 @@ function LowerMenu() {
           type="button"
           data-testid="explore-bottom-btn"
           src={ logoExplore }
+          className="buttonMenu"
         >
-          <img src={ logoExplore } alt="imagem de uma bússula" />
+          <img src={ logoExplore } alt="imagem de uma bússula" className="image" />
         </button>
       </Link>
       <Link to="/foods">
@@ -31,8 +33,9 @@ function LowerMenu() {
           type="button"
           data-testid="food-bottom-btn"
           src={ logoMeal }
+          className="buttonMenu"
         >
-          <img src={ logoMeal } alt="imagem de um prato" />
+          <img src={ logoMeal } alt="imagem de um prato" className="image" />
         </button>
       </Link>
     </footer>
