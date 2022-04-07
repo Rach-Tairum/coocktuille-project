@@ -7,6 +7,7 @@ import { MyContext } from '../context/Provider';
 import getDrinkCategories from '../services/getDrinkCategories';
 import getDrinksByCategory from '../services/getDrinksByCategory';
 import getListDrinks from '../services/getListDrinks';
+import '../CSS/Drinks.css';
 
 const maxRecipesIngredients = (recipes, maxLengthList, setDrinkList) => {
   if (recipes.length > maxLengthList) {
@@ -79,48 +80,57 @@ function Drinks() {
   };
 
   return (
-    <div>
-      <h2>Drinks</h2>
+    <div className="drinks-principal">
       <Header />
-      <button
-        data-testid="All-category-filter"
-        type="button"
-        onClick={ resetFilters }
-      >
-        All
-      </button>
-      { drinksCategories.length && drinksCategories.map((category, index) => (
+      <div className="buttons-div">
         <button
-          data-testid={ `${category.strCategory}-category-filter` }
-          key={ index }
+          className="div-button"
+          data-testid="All-category-filter"
           type="button"
-          onClick={ () => getRecipes(category.strCategory, index) }
+          onClick={ resetFilters }
         >
-          { category.strCategory }
+          All
         </button>
-      ))}
+        { drinksCategories.length && drinksCategories.map((category, index) => (
+          <button
+            className="div-button"
+            data-testid={ `${category.strCategory}-category-filter` }
+            key={ index }
+            type="button"
+            onClick={ () => getRecipes(category.strCategory, index) }
+          >
+            { category.strCategory }
+          </button>
+        ))}
+      </div>
 
       {drinkList.length === 1 && <Redirect to={ `/drinks/${drinkList[0].idDrink}` } />}
-      {drinkList.length > 1
-      && toggleCategory && recipesByCategory.map((drink, index) => (
-        <Link to={ `/drinks/${drink.idDrink}` } key={ `${index}-recipesByCategory` }>
-          <Card
-            name={ drink.strDrink }
-            img={ drink.strDrinkThumb }
-            index={ index }
-          />
-        </Link>
-      ))}
-      {drinkList.length > 1
-      && !toggleCategory && drinkList.map((drink, index) => (
-        <Link to={ `/drinks/${drink.idDrink}` } key={ `${index}-drinkList` }>
-          <Card
-            name={ drink.strDrink }
-            img={ drink.strDrinkThumb }
-            index={ index }
-          />
-        </Link>
-      ))}
+      <div className="drink-cards">
+        {drinkList.length > 1
+      && toggleCategory && recipesByCategory.map(
+          (drink, index) => (
+            <Link to={ `/drinks/${drink.idDrink}` } key={ `${index}-recipesByCategory` }>
+              <Card
+                name={ drink.strDrink }
+                img={ drink.strDrinkThumb }
+                index={ index }
+              />
+            </Link>
+          ),
+        )}
+        {drinkList.length > 1
+      && !toggleCategory && drinkList.map(
+          (drink, index) => (
+            <Link to={ `/drinks/${drink.idDrink}` } key={ `${index}-drinkList` }>
+              <Card
+                name={ drink.strDrink }
+                img={ drink.strDrinkThumb }
+                index={ index }
+              />
+            </Link>
+          ),
+        )}
+      </div>
       <LowerMenu />
     </div>
   );

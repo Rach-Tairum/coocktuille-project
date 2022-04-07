@@ -1,12 +1,14 @@
-.div-buttons {
+.drinks-principal {
+  margin-bottom: 80px;
+}
+
+.buttons-div {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 20px;
 }
 
-/* From cssbuttons.io by @adamgiebl */
-.filter-buttons {
+.div-button {
   background: radial-gradient(100% 100% at 100% 0%, rgb(11, 19, 43) 0%, rgb(121, 31, 31) 100%);
   border: 0;
   border-radius: 0.3em;
@@ -24,22 +26,19 @@
   will-change: box-shadow , transform;
 }
 
-.filter-buttons:hover {
+.div-button:hover {
   box-shadow: 0 0.1em 0.2em rgb(45 35 66 / 40%) , 0 0.4em 0.7em -0.1em rgb(45 35 66 / 30%) , inset 0 -0.1em 0 rgb(60, 79, 224);
   transform: translateY(-0.1em);
 }
 
-.filter-buttons:active {
+.div-button:active {
   box-shadow: inset 0 0.1em 0.6em #3c4fe0;
   transform: translateY(0);
 }
 
-.foods-cards {
+.drink-cards {
   display: flex;
   flex-wrap: wrap;
   margin: 5px;
 }
 
-.foods-all {
-  margin-bottom: 80px;
-}

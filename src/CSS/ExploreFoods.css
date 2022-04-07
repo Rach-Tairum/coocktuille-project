@@ -1,0 +1,74 @@
+.principal-explore-foods {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.select {
+  background: #292929;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  height: 40px;
+  margin: 10px;
+  padding: 0 15px;
+  position: relative;
+  text-align: left;
+  text-transform: capitalize;
+  width: 200px;
+}
+
+.select:after {
+  border-bottom: 2px solid wheat;
+  border-right: 2px solid wheat;
+  content: '';
+  height: 6px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 6px;
+}
+
+.select:hover {
+  background: #222;
+}
+
+.select.active {
+  background: #222;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* .options {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: none;
+  height: fit-content;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 40px;
+  width: 100%;
+}
+
+.options.active {
+  display: block;
+}
+
+.options .item {
+  color: wheat;
+  cursor: pointer;
+  height: 30px;
+  line-height: 25px;
+  padding: 0 15px;
+  text-transform: capitalize;
+  width: 100%;
+}
+
+.options .item.active {
+  background: wheat;
+} */

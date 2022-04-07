@@ -17,3 +17,12 @@
 .card-item img {
   border-radius: 20px;
 }
+
+.food-ingredients {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
