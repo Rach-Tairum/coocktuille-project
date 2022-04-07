@@ -7,6 +7,7 @@ import { MyContext } from '../context/Provider';
 import getDrinkCategories from '../services/getDrinkCategories';
 import getDrinksByCategory from '../services/getDrinksByCategory';
 import getListDrinks from '../services/getListDrinks';
+import '../CSS/Drinks.css';
 
 const maxRecipesIngredients = (recipes, maxLengthList, setDrinkList) => {
   if (recipes.length > maxLengthList) {
@@ -79,13 +80,13 @@ function Drinks() {
   };
 
   return (
-    <div>
-      <h2>Drinks</h2>
+    <div className="drinks-all">
       <Header />
       <button
         data-testid="All-category-filter"
         type="button"
         onClick={ resetFilters }
+        className="filter-buttons"
       >
         All
       </button>
@@ -95,6 +96,7 @@ function Drinks() {
           key={ index }
           type="button"
           onClick={ () => getRecipes(category.strCategory, index) }
+          className="filter-buttons"
         >
           { category.strCategory }
         </button>

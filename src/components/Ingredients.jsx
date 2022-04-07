@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 function Ingredients({ details, type, inProgress, id }) {
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
+  const [list, setList] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
   const [checkbox, setCheckbox] = useState({
     0: false,
