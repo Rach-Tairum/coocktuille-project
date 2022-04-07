@@ -129,6 +129,7 @@ function Ingredients({ details, type, inProgress, id }) {
       }
     }
     checkFinish();
+    setList([...list, index]);
   };
 
   const isChecked = (index) => checkbox[`${index}`];

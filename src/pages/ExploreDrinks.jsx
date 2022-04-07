@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import Header from '../components/Header';
 import LowerMenu from '../components/LowerMenu';
 import getSurpriseDrink from '../services/getDrinkSurprise';
+import '../CSS/ExploreFoods.css';
 
 function ExploreDrinks() {
   const history = useHistory();
@@ -23,24 +24,27 @@ function ExploreDrinks() {
 
   return (
     <div>
-      <h2>Explore Drinks</h2>
       <Header />
-      <button
-        type="button"
-        data-testid="explore-by-ingredient"
-        onClick={ () => (history.push('/explore/drinks/ingredients')) }
-      >
-        By Ingredient
-      </button>
+      <div className="principal-explore-foods">
+        <button
+          className="botton-explore"
+          type="button"
+          data-testid="explore-by-ingredient"
+          onClick={ () => (history.push('/explore/drinks/ingredients')) }
+        >
+          By Ingredient
+        </button>
 
-      <button
-        type="button"
-        data-testid="explore-surprise"
-        onClick={ redirectSurpriseMe }
-      >
-        Surprise me!
-      </button>
+        <button
+          className="botton-explore"
+          type="button"
+          data-testid="explore-surprise"
+          onClick={ redirectSurpriseMe }
+        >
+          Surprise me!
+        </button>
 
+      </div>
       <LowerMenu />
     </div>
   );

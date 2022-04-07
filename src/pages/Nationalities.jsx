@@ -7,6 +7,7 @@ import { MyContext } from '../context/Provider';
 import getFilterByNationalities from '../services/getFilterByNationalities';
 import getListFoods from '../services/getListFoods';
 import getNationalites from '../services/getNationalities';
+import '../CSS/ExploreFoods.css';
 
 function Nationalities() {
   const [nationalites, setNationalites] = useState([]);
@@ -58,11 +59,16 @@ function Nationalities() {
     <div>
       <h2>Nationalities</h2>
       <Header />
-      <select data-testid="explore-by-nationality-dropdown" onChange={ selectCountry }>
+      <select
+        className="select"
+        data-testid="explore-by-nationality-dropdown"
+        onChange={ selectCountry }
+      >
         {nationalites.map(
           (country, index) => (
             <option
               key={ index }
+              className="item"
               value={ country.strArea }
               data-testid={ `${country.strArea}-option` }
             >
