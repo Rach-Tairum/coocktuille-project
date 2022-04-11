@@ -37,9 +37,11 @@ function Recommendations({ type }) {
             src={ recipe[`str${recipesType}Thumb`] }
             alt={ recipe[`str${recipesType}`] }
             width="180"
+            className="img-card-recommendation"
           />
           <p
             data-testid={ `${index}-recomendation-title` }
+            className="p-card-recommendation"
           >
             { recipe[`str${recipesType}`] }
 

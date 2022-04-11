@@ -33,3 +33,20 @@
   font-family: Montserrat , Helvetica , Arial , sans-serif;
   margin: 10px;
 }
+
+.card {
+  background-color: rgba(240, 255, 255, 0.735);
+  border-radius: 20px;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+}
+
+.img-card-recommendation {
+  border-radius: 30px;
+}
+
+.p-card-recommendation {
+  font-family: Montserrat , Helvetica , Arial , sans-serif;
+}
+
