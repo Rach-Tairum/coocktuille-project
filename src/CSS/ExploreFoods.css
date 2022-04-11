@@ -42,33 +42,3 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-
-/* .options {
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  display: none;
-  height: fit-content;
-  left: 0;
-  overflow: hidden;
-  position: absolute;
-  top: 40px;
-  width: 100%;
-}
-
-.options.active {
-  display: block;
-}
-
-.options .item {
-  color: wheat;
-  cursor: pointer;
-  height: 30px;
-  line-height: 25px;
-  padding: 0 15px;
-  text-transform: capitalize;
-  width: 100%;
-}
-
-.options .item.active {
-  background: wheat;
-} */

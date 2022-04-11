@@ -4,11 +4,11 @@ import getFoodRecipe from '../services/getFoodRecipe';
 import getDrinkRecipe from '../services/getDrinkRecipe';
 import Ingredients from '../components/Ingredients';
 import Recommendations from '../components/Recommendations';
-import '../Details.css';
 import StartRecipeBtn from '../components/StartRecipeBtn';
 import FavoriteBtn from '../components/FavoriteBtn';
 import ContinueBtn from '../components/ContinueBtn';
 import ShareBtn from '../components/ShareBtn';
+import '../CSS/Details.css';
 
 const inProgressStatus = (id, idList, status, setStatus) => {
   const newStatus = status;
@@ -89,15 +89,28 @@ function Details() {
 
   return (
     <div>
-      <h2>Details</h2>
+      <h2 className="foods-title">Recipe Surprise</h2>
       <img
+        className="image-surprise"
         data-testid="recipe-photo"
         src={ details[`str${type}Thumb`] }
         alt="Recipe Img"
-        width="360"
+        width="200"
       />
-      <h2 data-testid="recipe-title">{ details[`str${type}`] }</h2>
-      <h4 data-testid="recipe-category">{ category }</h4>
+      <h2
+        data-testid="recipe-title"
+        className="recipe-title-surprise"
+      >
+        { details[`str${type}`] }
+
+      </h2>
+      <h4
+        data-testid="recipe-category"
+        className="category-surprise"
+      >
+        { category }
+
+      </h4>
       <FavoriteBtn
         id={ id }
         type={ type }

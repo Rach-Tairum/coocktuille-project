@@ -76,26 +76,28 @@ function Nationalities() {
           ),
         )}
       </select>
-      {selectedCountryList.length === 0
-        ? foodList.map((food, index) => (
-          <Link to={ `/foods/${food.idMeal}` } key={ food.idMeal }>
-            <Card
-              name={ food.strMeal }
-              img={ food.strMealThumb }
-              index={ index }
-            />
-          </Link>
-        ))
-        : selectedCountryList.map((meals, index) => (
-          <Link to={ `/foods/${meals.idMeal}` } key={ meals.idMeal }>
-            <Card
-              name={ meals.strMeal }
-              img={ meals.strMealThumb }
-              index={ index }
-            />
-          </Link>
-        ))}
-      <LowerMenu />
+      <div className="food-ingredients">
+        {selectedCountryList.length === 0
+          ? foodList.map((food, index) => (
+            <Link to={ `/foods/${food.idMeal}` } key={ food.idMeal }>
+              <Card
+                name={ food.strMeal }
+                img={ food.strMealThumb }
+                index={ index }
+              />
+            </Link>
+          ))
+          : selectedCountryList.map((meals, index) => (
+            <Link to={ `/foods/${meals.idMeal}` } key={ meals.idMeal }>
+              <Card
+                name={ meals.strMeal }
+                img={ meals.strMealThumb }
+                index={ index }
+              />
+            </Link>
+          ))}
+        <LowerMenu />
+      </div>
     </div>
   );
 }

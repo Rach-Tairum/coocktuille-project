@@ -34,18 +34,19 @@ function DrinkIngredients() {
 
   return (
     <div>
-      <h2>Drink Ingredients</h2>
       <Header />
-      {drinkIngredientsList.map(
-        (ingredient, index) => (
-          <CardIngredient
-            key={ index }
-            onClick={ redirectIngredient }
-            index={ index }
-            name={ ingredient.strIngredient1 }
-            img={ `https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Small.png` }
-          />),
-      )}
+      <div className="food-ingredients">
+        {drinkIngredientsList.map(
+          (ingredient, index) => (
+            <CardIngredient
+              key={ index }
+              onClick={ redirectIngredient }
+              index={ index }
+              name={ ingredient.strIngredient1 }
+              img={ `https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Small.png` }
+            />),
+        )}
+      </div>
       <LowerMenu />
     </div>
   );

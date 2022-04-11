@@ -1,0 +1,21 @@
+.image-surprise {
+  border: solid 4px black;
+  margin: 10px;
+}
+
+.recipe-title-surprise {
+  backdrop-filter: blur(1.5px);
+  color: brown;
+  font-family: Cookie , sans-serif;
+  font-size: 50px;
+  margin: 10px;
+  text-align: left;
+}
+
+.category-surprise {
+  backdrop-filter: blur(1.5px);
+  color: rgb(14, 2, 2);
+  font-size: 20px;
+  margin: 10px;
+  text-align: left;
+}
