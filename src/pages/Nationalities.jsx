@@ -57,7 +57,6 @@ function Nationalities() {
 
   return (
     <div>
-      <h2>Nationalities</h2>
       <Header />
       <select
         className="select"
