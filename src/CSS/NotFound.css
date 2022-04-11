@@ -1,0 +1,46 @@
+.gif2 {
+  margin: 20px;
+  width: 330px;
+}
+
+.não-encontrado {
+  backdrop-filter: blur(10px);
+  color: rgb(100, 16, 16);
+  font-family: Sawarabi Mincho , sans-serif;
+  font-size: 16pt;
+  margin-top: 0;
+  text-align: center;
+}
+
+.nao-encontrado2 {
+  backdrop-filter: blur(10px);
+  color: rgb(246, 99, 99);
+  font-family: Sawarabi Mincho , sans-serif;
+  font-size: 16pt;
+  margin-top: 0;
+  text-align: center;
+}
+
+.lowerMenu2 {
+  align-items: center;
+  background-color: rgb(121, 31, 31);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  padding: 5px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.buttonMenu-noFound {
+  background-color: rgb(121, 31, 31);
+  border: 0;
+  color: white;
+  font-family: Sawarabi Mincho , sans-serif;
+  font-size: 16pt;
+  height: 55px;
+  margin-bottom: 0;
+  margin-left: 15px;
+  margin-right: 15px;
+  width: 50px;
+}
