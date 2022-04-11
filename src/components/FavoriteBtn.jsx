@@ -82,6 +82,7 @@ function FavoriteBtn({ id, type }) {
       type="button"
       onClick={ favoriteStatus }
       src={ img }
+      className="favotite-btn"
     >
       <img src={ img } alt="Favorite" />
     </button>);

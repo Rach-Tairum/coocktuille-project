@@ -41,6 +41,7 @@ function Recommendations({ type }) {
           />
           <p
             data-testid={ `${index}-recomendation-title` }
+            className="p-card-recommendation"
           >
             { recipe[`str${recipesType}`] }
 
