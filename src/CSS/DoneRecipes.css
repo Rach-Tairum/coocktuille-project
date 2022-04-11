@@ -13,6 +13,7 @@
   margin: 5px;
   padding: 20px;
   text-align: center;
+  width: 100%;
 }
 
 .card-item-done img {
@@ -24,7 +25,6 @@
   font-size: 16pt;
 }
 
-.description-tags {
-  font-family: Sawarabi Mincho , sans-serif;
-  font-size: 14pt;
+.icons {
+  
 }

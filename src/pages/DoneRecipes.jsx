@@ -115,7 +115,7 @@ function DoneRecipes() {
 
     return (separeteTags.map((tag, i) => (
       <p
-        className="description-tags"
+        className="description"
         key={ i }
         data-testid={ `${index}-${tag}-horizontal-tag` }
       >
@@ -163,7 +163,7 @@ function DoneRecipes() {
                 data-testid={ `${index}-horizontal-image` }
                 src={ favoriteItem.image }
                 alt="imagem do item favoritado"
-                width="100"
+                width="150"
               />
             </Link>
             <Link to={ `/${favoriteItem.type}s/${favoriteItem.id}` }>
