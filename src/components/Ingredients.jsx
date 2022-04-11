@@ -189,7 +189,7 @@ function Ingredients({ details, type, inProgress, id }) {
 
   return (
     <div>
-      <ul>
+      <ul className="ul-ingredients">
         {!inProgress && ingredients.map((ingredient, index) => (
           <li
             data-testid={ `${index}-ingredient-name-and-measure` }

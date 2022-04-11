@@ -89,7 +89,7 @@ function Details() {
 
   return (
     <div>
-      <h2 className="foods-title">Recipe Surprise</h2>
+      <h2 className="foods-title">Recipe Details</h2>
       <img
         className="image-surprise"
         data-testid="recipe-photo"
@@ -116,13 +116,20 @@ function Details() {
         type={ type }
       />
       <ShareBtn />
+
       <Ingredients
         details={ details }
         type={ type }
         inProgress={ false }
         id={ id }
       />
-      <p data-testid="instructions">{ details.strInstructions }</p>
+      <p
+        className="paragrafo-details"
+        data-testid="instructions"
+      >
+        { details.strInstructions }
+
+      </p>
       {youtubeCode && <iframe
         data-testid="video"
         width="320"
