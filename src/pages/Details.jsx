@@ -88,7 +88,7 @@ function Details() {
   console.log(details);
 
   return (
-    <div>
+    <div className="div-principal-details">
       <h2 className="foods-title">Recipe Details</h2>
       <img
         className="image-surprise"
@@ -139,6 +139,7 @@ function Details() {
         title="YouTube video player"
         frameBorder="0"
       />}
+
       <Recommendations
         type={ type }
       />

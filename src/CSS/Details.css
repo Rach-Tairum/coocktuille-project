@@ -1,6 +1,11 @@
+.div-principal-details {
+  display: inline;
+  justify-content: left;
+}
+
 .image-surprise {
   border: solid 4px black;
-  margin: 10px;
+  margin: 15px;
 }
 
 .recipe-title-surprise {
@@ -8,7 +13,7 @@
   color: brown;
   font-family: Cookie , sans-serif;
   font-size: 50px;
-  margin: 10px;
+  margin: 15px;
   text-align: left;
 }
 
@@ -17,27 +22,29 @@
   color: black;
   font-family: Montserrat , Helvetica , Arial , sans-serif;
   font-size: 20px;
-  margin: 10px;
+  margin: 15px;
   text-align: left;
 }
 
 .ul-ingredients {
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(4px);
   color: rgb(14, 2, 2);
   font-family: Montserrat , Helvetica , Arial , sans-serif;
-  margin: 10px;
+  margin: 15px;
 }
 
 .paragrafo-details {
+  backdrop-filter: blur(3px);
   color: rgb(14, 2, 2);
   font-family: Montserrat , Helvetica , Arial , sans-serif;
-  margin: 10px;
+  margin: 20px;
+
 }
 
 .card {
   background-color: rgba(240, 255, 255, 0.735);
   border-radius: 20px;
-  margin: 5px;
+  margin: 15px;
   padding: 5px;
   text-align: center;
 }
@@ -59,7 +66,8 @@
   font-family: inherit;
   font-size: 10px;
   font-weight: 600;
-  margin: 3px;
+
+  /* margin: 3px; */
   padding: 18px;
   text-transform: uppercase;
   transition: box-shadow 0.25s ease 0s;
