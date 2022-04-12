@@ -111,12 +111,13 @@ function Details() {
         { category }
 
       </h4>
-      <FavoriteBtn
-        id={ id }
-        type={ type }
-      />
-      <ShareBtn />
-
+      <div className="icons2">
+        <FavoriteBtn
+          id={ id }
+          type={ type }
+        />
+        <ShareBtn />
+      </div>
       <Ingredients
         details={ details }
         type={ type }

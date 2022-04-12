@@ -84,7 +84,7 @@ function FavoriteBtn({ id, type }) {
       src={ img }
       className="favotite-btn"
     >
-      <img src={ img } alt="Favorite" />
+      <img src={ img } alt="Favorite" className="favotite-btn" />
     </button>);
 }
 

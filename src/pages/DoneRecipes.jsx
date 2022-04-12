@@ -82,13 +82,13 @@ function DoneRecipes() {
             src={ blackHeartIcon }
             onClick={ removeRecipe }
             id={ idDone }
-            className="heart"
+            className="favotite-btn"
           >
             <img
               id={ idDone }
               src={ blackHeartIcon }
               alt=" ícone de favoritar e desfavoritar item"
-              className="heart"
+              className="favotite-btn"
             />
           </button>
         );
@@ -101,13 +101,13 @@ function DoneRecipes() {
           src={ heartIcon }
           onClick={ favoriteRecipe }
           id={ idDone }
-          className="heart"
+          className="favotite-btn"
         >
           <img
             id={ idDone }
             src={ heartIcon }
             alt=" ícone de favoritar e desfavoritar item"
-            className="heart"
+            className="favotite-btn"
           />
         </button>
       );

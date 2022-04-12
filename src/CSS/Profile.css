@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Updock&display=swap') ;
+
+.buttons-ajust {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.user {
+  background-image: linear-gradient(144deg, rgba(155, 6, 6, 0.802), rgba(19, 32, 72, 0.802), rgb(2, 167, 145, 0.802));
+  border-radius: 15px;
+  color: white;
+  font-family: Bree Serif , sans-serif;
+  font-size: 22pt;
+  font-weight: 600;
+  margin: 30px;
+  margin-left: 45px;
+  padding: 5px;
+  text-align: center;
+  width: 280px;
+}

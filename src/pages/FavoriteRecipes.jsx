@@ -119,13 +119,13 @@ function FavoriteRecipes() {
                 src={ blackHeartIcon }
                 onClick={ removeItem }
                 id={ favoriteItem.id }
-                className="heart"
+                className="favotite-btn"
               >
                 <img
                   id={ favoriteItem.id }
                   src={ blackHeartIcon }
                   alt=" ícone de favoritar e desfavoritar item"
-                  className="heart"
+                  className="favotite-btn"
                 />
               </button>
             </div>

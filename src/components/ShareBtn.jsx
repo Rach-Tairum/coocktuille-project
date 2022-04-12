@@ -37,9 +37,9 @@ function ShareBtn({ id, type }) {
         data-testid="share-btn"
         type="button"
         onClick={ copyLink }
-        className="heart"
+        className="favotite-btn"
       >
-        <img src={ shareIcon } alt="Share" className="heart" />
+        <img src={ shareIcon } alt="Share" className="favotite-btn" />
       </button>
       {copied && <p className="card-item-p-2">Link copied!</p>}
     </div>
