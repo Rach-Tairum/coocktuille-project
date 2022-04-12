@@ -46,80 +46,92 @@ function FavoriteRecipes() {
 
   return (
     <div>
-      <h2>FavoriteRecipes</h2>
       <Header />
+      <div className="buttons-div">
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ favorites }
+          className="div-button"
+        >
+          All
+        </button>
 
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ favorites }
-      >
-        All
-      </button>
+        <button
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ favoritesFoods }
+          className="div-button"
+        >
+          Foods
+        </button>
 
-      <button
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ favoritesFoods }
-      >
-        Foods
-      </button>
-
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ favoritesDrinks }
-      >
-        Drinks
-      </button>
-
-      { filterRecipes && filterRecipes.map((favoriteItem, index) => (
-        <div key={ favoriteItem.id }>
-          <Link to={ `/${favoriteItem.type}s/${favoriteItem.id}` }>
-            <img
-              data-testid={ `${index}-horizontal-image` }
-              src={ favoriteItem.image }
-              alt="imagem do item favoritado"
-              width="100"
-            />
-          </Link>
-          <Link to={ `/${favoriteItem.type}s/${favoriteItem.id}` }>
-            <p data-testid={ `${index}-horizontal-name` }>{ favoriteItem.name }</p>
-          </Link>
-          <p>{ favoriteItem.category }</p>
-          { favoriteItem.nationality === ''
-            ? (
-              <p data-testid={ `${index}-horizontal-top-text` }>
-                { favoriteItem.alcoholicOrNot }
-              </p>)
-
-            : (
+        <button
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ favoritesDrinks }
+          className="div-button"
+        >
+          Drinks
+        </button>
+      </div>
+      <div className="done-cards">
+        { filterRecipes && filterRecipes.map((favoriteItem, index) => (
+          <div key={ favoriteItem.id } className="card-item-done">
+            <Link to={ `/${favoriteItem.type}s/${favoriteItem.id}` }>
+              <img
+                data-testid={ `${index}-horizontal-image` }
+                src={ favoriteItem.image }
+                alt="imagem do item favoritado"
+                width="150"
+              />
+            </Link>
+            <Link to={ `/${favoriteItem.type}s/${favoriteItem.id}` }>
               <p
-                data-testid={ `${index}-horizontal-top-text` }
+                data-testid={ `${index}-horizontal-name` }
+                className="card-item-p"
               >
+                { favoriteItem.name }
+              </p>
+            </Link>
+            <p className="description">{ favoriteItem.category }</p>
+            { favoriteItem.nationality === ''
+              ? (
+                <p className="description" data-testid={ `${index}-horizontal-top-text` }>
+                  { favoriteItem.alcoholicOrNot }
+                </p>)
 
-                {`${favoriteItem.nationality} - ${favoriteItem.category}`}
+              : (
+                <p
+                  data-testid={ `${index}-horizontal-top-text` }
+                  className="description"
+                >
 
-              </p>) }
+                  {`${favoriteItem.nationality} - ${favoriteItem.category}`}
 
-          <ShareBtn id={ favoriteItem.id } type={ favoriteItem.type } />
+                </p>) }
+            <div className="icons">
+              <ShareBtn id={ favoriteItem.id } type={ favoriteItem.type } />
 
-          <button
-            type="button"
-            data-testid={ `${index}-horizontal-favorite-btn` }
-            src={ blackHeartIcon }
-            onClick={ removeItem }
-            id={ favoriteItem.id }
-          >
-            <img
-              id={ favoriteItem.id }
-              src={ blackHeartIcon }
-              alt=" ícone de favoritar e desfavoritar item"
-            />
-          </button>
-
-        </div>
-      )) }
+              <button
+                type="button"
+                data-testid={ `${index}-horizontal-favorite-btn` }
+                src={ blackHeartIcon }
+                onClick={ removeItem }
+                id={ favoriteItem.id }
+                className="heart"
+              >
+                <img
+                  id={ favoriteItem.id }
+                  src={ blackHeartIcon }
+                  alt=" ícone de favoritar e desfavoritar item"
+                  className="heart"
+                />
+              </button>
+            </div>
+          </div>
+        )) }
+      </div>
     </div>
   );
 }
