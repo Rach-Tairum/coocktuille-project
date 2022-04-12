@@ -26,5 +26,23 @@
 }
 
 .icons {
-  
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.heart {
+  background-color: rgb(202, 113, 113);
+  border: 0;
+  border-radius: 80px;
+  margin-right: 5px;
+  padding: 10px;
+}
+
+.card-item-p-2 {
+  color: rgb(155, 6, 6);
+  font-family: Sawarabi Mincho , sans-serif;
+  font-size: 13pt;
+  font-style: none;
+  text-decoration: underline white;
 }
