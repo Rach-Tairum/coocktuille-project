@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import heartIcon from '../images/whiteHeartIcon.svg';
 import ShareBtn from '../components/ShareBtn';
+import '../CSS/DoneRecipes.css';
 
 function DoneRecipes() {
   const [doneRecipesList, setDoneRecipesList] = useState([]);
@@ -109,73 +110,101 @@ function DoneRecipes() {
     }
   };
 
+  const correctTags = (tags, index) => {
+    const separeteTags = tags[0].split(',');
+
+    return (separeteTags.map((tag, i) => (
+      <p
+        className="description"
+        key={ i }
+        data-testid={ `${index}-${tag}-horizontal-tag` }
+      >
+        {`${tag} `}
+      </p>
+    )));
+  };
+
   return (
     <>
-      <h2>DoneRecipes</h2>
       <Header />
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ favorites }
-      >
-        All
-      </button>
+      <div className="buttons-div">
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ favorites }
+          className="div-button"
+        >
+          All
+        </button>
 
-      <button
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ favoritesFoods }
-      >
-        Foods
-      </button>
+        <button
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ favoritesFoods }
+          className="div-button"
+        >
+          Foods
+        </button>
 
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ favoritesDrinks }
-      >
-        Drinks
-      </button>
-      { filterRecipes && filterRecipes.map((favoriteItem, index) => (
-        <div key={ favoriteItem.id }>
-          <Link to={ `/${favoriteItem.type}s/${favoriteItem.id}` }>
-            <img
-              data-testid={ `${index}-horizontal-image` }
-              src={ favoriteItem.image }
-              alt="imagem do item favoritado"
-              width="100"
-            />
-          </Link>
-          <Link to={ `/${favoriteItem.type}s/${favoriteItem.id}` }>
-            <p data-testid={ `${index}-horizontal-name` }>{ favoriteItem.name }</p>
-          </Link>
-          <p>{ favoriteItem.category }</p>
-          { favoriteItem.nationality === ''
-            ? (
-              <p data-testid={ `${index}-horizontal-top-text` }>
-                { favoriteItem.alcoholicOrNot }
-              </p>)
-
-            : (
+        <button
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ favoritesDrinks }
+          className="div-button"
+        >
+          Drinks
+        </button>
+      </div>
+      <div className="done-cards">
+        { filterRecipes && filterRecipes.map((favoriteItem, index) => (
+          <div key={ favoriteItem.id } className="card-item-done">
+            <Link to={ `/${favoriteItem.type}s/${favoriteItem.id}` }>
+              <img
+                data-testid={ `${index}-horizontal-image` }
+                src={ favoriteItem.image }
+                alt="imagem do item favoritado"
+                width="150"
+              />
+            </Link>
+            <Link to={ `/${favoriteItem.type}s/${favoriteItem.id}` }>
               <p
-                data-testid={ `${index}-horizontal-top-text` }
+                className="card-item-p"
+                data-testid={ `${index}-horizontal-name` }
               >
+                { favoriteItem.name }
+              </p>
+            </Link>
+            <p className="description">{ favoriteItem.category }</p>
+            { favoriteItem.nationality === ''
+              ? (
+                <p data-testid={ `${index}-horizontal-top-text` } className="description">
+                  { favoriteItem.alcoholicOrNot }
+                </p>)
 
-                {`${favoriteItem.nationality} - ${favoriteItem.category}`}
+              : (
+                <p
+                  data-testid={ `${index}-horizontal-top-text` }
+                  className="description"
+                >
 
-              </p>) }
-          <p data-testid={ `${index}-horizontal-done-date` }>{favoriteItem.doneDate}</p>
-          {favoriteItem.tags.length !== 0 && favoriteItem.tags.map((tag, i) => (
-            <p key={ i } data-testid={ `${index}-${tag}-horizontal-tag` }>
-              {tag}
+                  {`${favoriteItem.nationality} - ${favoriteItem.category}`}
+
+                </p>) }
+            <p
+              data-testid={ `${index}-horizontal-done-date` }
+              className="description"
+            >
+              {favoriteItem.doneDate}
             </p>
-          ))}
+            {favoriteItem.tags.length !== 0 && correctTags(favoriteItem.tags, index) }
+            <div className="icons">
+              <ShareBtn id={ favoriteItem.id } type={ favoriteItem.type } />
 
-          <ShareBtn id={ favoriteItem.id } type={ favoriteItem.type } />
-
-          {renderHearts(favoriteItem.id, index)}
-        </div>
-      )) }
+              {renderHearts(favoriteItem.id, index)}
+            </div>
+          </div>
+        )) }
+      </div>
     </>
   );
 }

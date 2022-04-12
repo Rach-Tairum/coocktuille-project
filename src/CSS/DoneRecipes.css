@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap') ;
+
+.done-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 5px;
+}
+
+.card-item-done {
+  background-color: rgba(240, 255, 255, 0.735);
+  border-radius: 20px;
+  margin: 5px;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.card-item-done img {
+  border-radius: 20px;
+}
+
+.description {
+  font-family: Satisfy , sans-serif;
+  font-size: 16pt;
+}
+
+.icons {
+  
+}
