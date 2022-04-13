@@ -116,7 +116,9 @@ function Details() {
           id={ id }
           type={ type }
         />
+
         <ShareBtn />
+
       </div>
       <Ingredients
         details={ details }
@@ -132,6 +134,7 @@ function Details() {
 
       </p>
       {youtubeCode && <iframe
+        // className="youtube-frame"
         data-testid="video"
         width="320"
         height="180"

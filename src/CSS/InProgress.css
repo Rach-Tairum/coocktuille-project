@@ -1,0 +1,37 @@
+.inprogress-category {
+  backdrop-filter: blur(2.5px);
+  color: rgb(129, 17, 17);
+  font-family: Cookie , sans-serif;
+  font-size: 50px;
+  font-weight: 500;
+  margin: 15px;
+  text-align: left;
+}
+
+.category-inprogress {
+  backdrop-filter: blur(0.5px);
+  color: black;
+  font-family: Montserrat , Helvetica , Arial , sans-serif;
+  font-size: 18px;
+  margin: 15px;
+  text-align: left;
+}
+
+.ul-ingredients {
+  backdrop-filter: blur(4px);
+
+  /* background-color: aliceblue; */
+  color: rgb(14, 2, 2);
+  font-family: Montserrat , Helvetica , Arial , sans-serif;
+  margin: 15px;
+}
+
+.paragrafo-details {
+  backdrop-filter: blur(3px);
+
+  /* background-color: aliceblue; */
+  color: rgb(14, 2, 2);
+  font-family: Montserrat , Helvetica , Arial , sans-serif;
+  margin: 20px;
+
+}

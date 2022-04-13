@@ -7,6 +7,7 @@ import Recommendations from '../components/Recommendations';
 import '../Details.css';
 import FavoriteBtn from '../components/FavoriteBtn';
 import ShareBtn from '../components/ShareBtn';
+import '../CSS/InProgress.css';
 
 // const inProgressCheck = (id, type, status, setStatus) => {
 //   const newStatus = status;
@@ -87,31 +88,53 @@ function InProgress() {
 
   return (
     <div>
-      <h2>InProgress</h2>
+      <h2 className="foods-title">Recipes In Progress</h2>
       <img
         data-testid="recipe-photo"
         src={ details[`str${type}Thumb`] }
         alt="Recipe Img"
-        width="360"
+        width="200"
+        className="image-surprise"
       />
-      <h2 data-testid="recipe-title">{ details[`str${type}`] }</h2>
-      <h4 data-testid="recipe-category">{ category }</h4>
+      <h2
+        data-testid="recipe-title"
+        className="inprogress-category"
+      >
+        { details[`str${type}`] }
+
+      </h2>
+      <h4
+        data-testid="recipe-category"
+        className="category-inprogress"
+      >
+        { category }
+      </h4>
+
       <FavoriteBtn
         id={ id }
         type={ type }
         details={ details }
       />
+
       <ShareBtn />
+
       <Ingredients
         details={ details }
         type={ type }
         inProgress
         id={ id }
       />
-      <p data-testid="instructions">{ details.strInstructions }</p>
+      <p
+        data-testid="instructions"
+        className="paragrafo-details"
+      >
+        { details.strInstructions }
+
+      </p>
       {youtubeCode && <iframe
         data-testid="video"
         width="320"
+        margin="40"
         height="180"
         src={ `https://youtube.com/embed/${youtubeCode}` }
         title="YouTube video player"
@@ -120,13 +143,6 @@ function InProgress() {
       <Recommendations
         type={ type }
       />
-      {/* <button
-        className="fixed-btn"
-        data-testid="finish-recipe-btn"
-        type="button"
-      >
-        Finish
-      </button> */}
     </div>
   );
 }

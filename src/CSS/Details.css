@@ -9,10 +9,11 @@
 }
 
 .recipe-title-surprise {
-  backdrop-filter: blur(1.5px);
-  color: brown;
+  backdrop-filter: blur(2.5px);
+  color: rgb(129, 17, 17);
   font-family: Cookie , sans-serif;
   font-size: 50px;
+  font-weight: 500;
   margin: 15px;
   text-align: left;
 }
@@ -21,7 +22,7 @@
   backdrop-filter: blur(0.5px);
   color: black;
   font-family: Montserrat , Helvetica , Arial , sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   margin: 15px;
   text-align: left;
 }
