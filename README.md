@@ -2,12 +2,6 @@
 
 # CookTuille Project
 
-# Desenvolvido por: 
-  * [Caroline Nepomuceno](https://github.com/car0l15);
-  * [Cristiano Sales](https://github.com/Cristiano-Sales);
-  * [Rachel Tairum](https://github.com/Rach-Tairum);
-  * [Yuri Carvalho](https://github.com/YuriCPS);
-
 ## Contexto
   Bem vindos ao CookTuille!!!
 
@@ -18,6 +12,13 @@
   Neste projeto desenvolvi mais intensamente a parte de explore, menu inferior e CSS.
 
   Aqueça as panelas e teste suas receitas!!
+  
+ ## Desenvolvido por: 
+  * [Caroline Nepomuceno](https://github.com/car0l15);
+  * [Cristiano Sales](https://github.com/Cristiano-Sales);
+  * [Rachel Tairum](https://github.com/Rach-Tairum);
+  * [Yuri Carvalho](https://github.com/YuriCPS);
+
 
 ## O Projeto:
 
