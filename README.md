@@ -1,11 +1,11 @@
 # 🚧 README em construção 🚧
 
-# CookTuille Project
+# CookTuille Project 👩‍🍳
 
 ## Contexto
   Bem vindos ao CookTuille!!!
 
-  Esse é um aplicativo de receitas onde você é o protagonista e chef de cozinha da casa! Com ele, é possivel realizar as melhores receitas internacionais, se sentir em plena Paris, bebendo um drink próximo a torre Eifel, ou na Itália provando una bella pasta, perto da fonte de Trevi, pode até incorporar o James Bond e fazer o famoso martini mexido, não batido. Isso tudo de dentro da sua casa!
+  Esse é um aplicativo de receitas onde você é o protagonista e chef de cozinha da casa! Com ele, é possivel realizar as melhores receitas internacionais, se sentir em plena Paris, bebendo um drink próximo a torre Eifel, ou na Itália provando una bella pasta, perto da fonte de Trevi, pode até incorporar o James Bond e fazer o famoso martini 🍸 mexido, não batido. Isso tudo de dentro da sua casa!
 
   Neste app você pode fazer várias receitas, marcaros ingredientes já utilizados e então finalizar sua receita de comida ou drink e mostrar com orgulho aos amigos e amigas as receitas que ja realizou. Além de favoritar receitas e compartilha-las com os amigos! Por fim, ainda é possivel filtrar receitas por nacionalidade ou ingrediente.
   
@@ -22,6 +22,7 @@
 
 ## O Projeto:
 
+https://user-images.githubusercontent.com/93009735/168402270-70dd576c-d8c5-48b6-8ee0-91aa5055b592.mp4
 
 ---
 ## Técnologias usadas
