@@ -20,7 +20,6 @@ function Nationalities() {
       const nationalities = await getNationalites();
       const string = { strArea: 'All' };
       const allOk = [string, ...nationalities];
-      console.log(allOk);
       setNationalites(allOk);
     };
     const fetchFoods = async () => {
